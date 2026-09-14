@@ -6,6 +6,13 @@ RUN install-php-extensions \
     exif \
     pdo_mysql
 
+RUN apt-get update && apt-get install -y \
+    curl \
+    unzip \
+    nodejs \
+    npm \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
 COPY . /app
@@ -18,6 +25,8 @@ RUN composer install \
     --no-interaction \
     --no-scripts
 
+RUN npm install && npm run build
+
 RUN mkdir -p \
     storage/framework/cache \
     storage/framework/sessions \
@@ -26,8 +35,6 @@ RUN mkdir -p \
     bootstrap/cache
 
 RUN chmod -R 775 storage bootstrap/cache
-
-RUN npm install && npm run build
 
 EXPOSE 8080
 
