@@ -10,25 +10,35 @@ return new class extends Migration
     {
         Schema::table('rentals', function (Blueprint $table) {
 
-            $table->string('payment_code')->nullable()->after('rental_code');
+            if (!Schema::hasColumn('rentals', 'payment_code')) {
+                $table->string('payment_code')->nullable()->after('rental_code');
+            }
 
-            $table->enum('payment_method',[
-                'Transfer BCA',
-                'Transfer BNI',
-                'Transfer Mandiri',
-                'QRIS',
-                'Cash'
-            ])->nullable()->after('total_price');
+            if (!Schema::hasColumn('rentals', 'payment_method')) {
+                $table->enum('payment_method', [
+                    'Transfer BCA',
+                    'Transfer BNI',
+                    'Transfer Mandiri',
+                    'QRIS',
+                    'Cash'
+                ])->nullable()->after('total_price');
+            }
 
-            $table->enum('payment_status',[
-                'Belum Lunas',
-                'Menunggu Verifikasi',
-                'Lunas'
-            ])->default('Belum Lunas')->after('payment_method');
+            if (!Schema::hasColumn('rentals', 'payment_status')) {
+                $table->enum('payment_status', [
+                    'Belum Lunas',
+                    'Menunggu Verifikasi',
+                    'Lunas'
+                ])->default('Belum Lunas')->after('payment_method');
+            }
 
-            $table->date('payment_date')->nullable()->after('payment_status');
+            if (!Schema::hasColumn('rentals', 'payment_date')) {
+                $table->date('payment_date')->nullable()->after('payment_status');
+            }
 
-            $table->string('payment_proof')->nullable()->after('payment_date');
+            if (!Schema::hasColumn('rentals', 'payment_proof')) {
+                $table->string('payment_proof')->nullable()->after('payment_date');
+            }
 
         });
     }
@@ -37,13 +47,19 @@ return new class extends Migration
     {
         Schema::table('rentals', function (Blueprint $table) {
 
-            $table->dropColumn([
+            $columns = [
                 'payment_code',
                 'payment_method',
                 'payment_status',
                 'payment_date',
                 'payment_proof'
-            ]);
+            ];
+
+            foreach ($columns as $column) {
+                if (Schema::hasColumn('rentals', $column)) {
+                    $table->dropColumn($column);
+                }
+            }
 
         });
     }
