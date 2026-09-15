@@ -41,4 +41,4 @@ RUN chmod -R 775 storage bootstrap/cache
 
 EXPOSE 8080
 
-CMD ["php", "artisan", "octane:frankenphp", "--host=0.0.0.0", "--port=8080"]
+CMD ["sh", "-c", "php artisan migrate --force && php artisan octane:frankenphp --host=0.0.0.0 --port=8080"]
