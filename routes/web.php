@@ -47,6 +47,24 @@ Route::get('/', function () {
 
 /*
 |--------------------------------------------------------------------------
+| PRODUK PUBLIK
+|--------------------------------------------------------------------------
+|
+| Digunakan oleh kategori pada landing page.
+| Contoh:
+| /produk?category=1
+|
+|--------------------------------------------------------------------------
+*/
+
+Route::get(
+    '/produk',
+    [CustomerProductController::class, 'index']
+)->name('produk');
+
+
+/*
+|--------------------------------------------------------------------------
 | ADMIN
 |--------------------------------------------------------------------------
 |
@@ -93,7 +111,7 @@ Route::middleware('auth')->group(function () {
 
     /*
     |--------------------------------------------------------------------------
-    | PRODUK
+    | PRODUK ADMIN
     |--------------------------------------------------------------------------
     */
 
@@ -156,38 +174,6 @@ Route::middleware('auth')->group(function () {
     |--------------------------------------------------------------------------
     | PENGEMBALIAN ADMIN
     |--------------------------------------------------------------------------
-    |
-    | ALUR:
-    |
-    | Rental
-    |    ↓
-    | approved
-    |    ↓
-    | Pelanggan ajukan pengembalian
-    |    ↓
-    | Pengembalian = Menunggu
-    |    ↓
-    | ADMIN MEMPROSES DATA YANG SUDAH ADA
-    |    ↓
-    | Admin menentukan:
-    | - tanggal kembali
-    | - kondisi barang
-    |    ↓
-    | Sistem menghitung denda
-    |    ↓
-    | Stok dikembalikan
-    |    ↓
-    | Rental = completed
-    |    ↓
-    | Pengembalian = Menunggu Pembayaran
-    |
-    | PENTING:
-    |
-    | Admin TIDAK membuat pengembalian baru.
-    | Admin memproses data Pengembalian yang dibuat
-    | oleh pelanggan.
-    |
-    |--------------------------------------------------------------------------
     */
 
     Route::post(
@@ -204,17 +190,6 @@ Route::middleware('auth')->group(function () {
     /*
     |--------------------------------------------------------------------------
     | PEMBAYARAN ADMIN
-    |--------------------------------------------------------------------------
-    |
-    | Admin hanya melakukan verifikasi pembayaran pelanggan.
-    |
-    | Pelanggan:
-    | Menunggu
-    |      ↓
-    | Admin verifikasi
-    |      ↓
-    | Lunas / Ditolak
-    |
     |--------------------------------------------------------------------------
     */
 
@@ -306,10 +281,6 @@ Route::middleware('auth')->group(function () {
     |--------------------------------------------------------------------------
     | MODE ADMIN → PELANGGAN
     |--------------------------------------------------------------------------
-    |
-    | Admin dapat masuk ke tampilan pelanggan tertentu.
-    |
-    |--------------------------------------------------------------------------
     */
 
     Route::get(
@@ -398,30 +369,7 @@ Route::middleware('auth')
 
         /*
         |--------------------------------------------------------------------------
-        | PENGEMBALIAN PELANGGAN
-        |--------------------------------------------------------------------------
-        |
-        | ALUR:
-        |
-        | Rental = approved
-        |        ↓
-        | Pelanggan klik "Ajukan Pengembalian"
-        |        ↓
-        | POST rental_id + kondisi + catatan
-        |        ↓
-        | CustomerPengembalianController@store
-        |        ↓
-        | Pengembalian = Menunggu
-        |        ↓
-        | Admin memproses
-        |
-        |--------------------------------------------------------------------------
-        */
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | HALAMAN PENGEMBALIAN
+        | PENGEMBALIAN
         |--------------------------------------------------------------------------
         */
 
@@ -430,64 +378,10 @@ Route::middleware('auth')
             [CustomerPengembalianController::class, 'index']
         )->name('pengembalian');
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | AJUKAN PENGEMBALIAN
-        |--------------------------------------------------------------------------
-        |
-        | PENTING:
-        |
-        | Tidak menggunakan:
-        |
-        | /pengembalian/{rental}
-        |
-        | dan tidak membutuhkan parameter {rental} pada URL.
-        |
-        | rental_id dikirim melalui form.
-        |
-        | Contoh form:
-        |
-        | <form method="POST"
-        |       action="{{ route('pelanggan.pengembalian.store') }}">
-        |
-        |     @csrf
-        |
-        |     <input type="hidden"
-        |            name="rental_id"
-        |            value="{{ $rental->id }}">
-        |
-        |     ...
-        |
-        | </form>
-        |
-        |--------------------------------------------------------------------------
-        */
-
         Route::post(
             '/pengembalian',
             [CustomerPengembalianController::class, 'store']
         )->name('pengembalian.store');
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | ALIAS ROUTE DARI HALAMAN RENTALS
-        |--------------------------------------------------------------------------
-        |
-        | Jika Blade lama masih menggunakan:
-        |
-        | route('pelanggan.return')
-        |
-        | route ini tetap tersedia.
-        |
-        | Tetapi sekarang langsung menggunakan store(),
-        | BUKAN returnRequest().
-        |
-        | rental_id tetap dikirim melalui POST.
-        |
-        |--------------------------------------------------------------------------
-        */
 
         Route::post(
             '/rentals/return',
@@ -499,41 +393,6 @@ Route::middleware('auth')
         |--------------------------------------------------------------------------
         | PEMBAYARAN PELANGGAN
         |--------------------------------------------------------------------------
-        |
-        | ALUR:
-        |
-        | Rental
-        |    ↓
-        | Approved
-        |    ↓
-        | Pengembalian diajukan
-        |    ↓
-        | Pengembalian Menunggu
-        |    ↓
-        | Admin proses
-        |    ↓
-        | Pengembalian Menunggu Pembayaran
-        |    ↓
-        | Rental Completed
-        |    ↓
-        | Tagihan dihitung
-        |    ↓
-        | Customer melakukan pembayaran
-        |    ↓
-        | Payment Menunggu
-        |    ↓
-        | Admin verifikasi
-        |    ↓
-        | Payment Lunas
-        |
-        |--------------------------------------------------------------------------
-        */
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | HALAMAN PEMBAYARAN
-        |--------------------------------------------------------------------------
         */
 
         Route::get(
@@ -541,42 +400,15 @@ Route::middleware('auth')
             [CustomerPaymentController::class, 'index']
         )->name('payments');
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | SIMPAN PEMBAYARAN
-        |--------------------------------------------------------------------------
-        */
-
         Route::post(
             '/payments',
             [CustomerPaymentController::class, 'store']
         )->name('payments.store');
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | PRINT / DOWNLOAD INVOICE
-        |--------------------------------------------------------------------------
-        |
-        | Diletakkan sebelum:
-        |
-        | /payments/{payment}
-        |
-        |--------------------------------------------------------------------------
-        */
-
         Route::get(
             '/payments/print/{rental}',
             [CustomerPaymentController::class, 'print']
         )->name('payments.print');
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | DETAIL PAYMENT
-        |--------------------------------------------------------------------------
-        */
 
         Route::get(
             '/payments/{payment}',
@@ -621,23 +453,11 @@ Route::get(
 |--------------------------------------------------------------------------
 | BUKTI PEMBAYARAN
 |--------------------------------------------------------------------------
-|
-| Menampilkan bukti pembayaran dari:
-|
-| storage/app/public/payments/
-|
-|--------------------------------------------------------------------------
 */
 
 Route::get(
     '/payment-proof/{filename}',
     function ($filename) {
-
-        /*
-        |--------------------------------------------------------------------------
-        | SECURITY
-        |--------------------------------------------------------------------------
-        */
 
         $filename = basename($filename);
 
