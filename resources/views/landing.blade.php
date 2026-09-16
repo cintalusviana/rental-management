@@ -6679,7 +6679,7 @@
                 @forelse($landingCategories as $index => $category)
 
                     <a
-                        href="{{ url('/produk?category=' . $category->id) }}"
+                        href="{{ url('/pelanggan/products?category=' . $category->id) }}"
                         class="rk-category rk-reveal"
                     >
 
