@@ -6,60 +6,69 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
-        Schema::table('rentals', function (Blueprint $table) {
+        $columns = [
+            'payment_code',
+            'payment_method',
+            'payment_status',
+            'payment_date',
+            'payment_proof',
+        ];
 
+        foreach ($columns as $column) {
+            if (!Schema::hasColumn('rentals', $column)) {
+                Schema::table('rentals', function (Blueprint $table) use ($column) {
+                    if ($column === 'payment_code') {
+                        $table->string('payment_code')->nullable();
+                    }
 
-            $table->string('payment_code')
-                ->nullable();
+                    if ($column === 'payment_method') {
+                        $table->enum('payment_method', [
+                            'Transfer BCA',
+                            'Transfer BNI',
+                            'Transfer Mandiri',
+                            'QRIS',
+                            'Cash'
+                        ])->nullable();
+                    }
 
+                    if ($column === 'payment_status') {
+                        $table->enum('payment_status', [
+                            'Belum Lunas',
+                            'Menunggu Verifikasi',
+                            'Lunas'
+                        ])->default('Belum Lunas');
+                    }
 
-            $table->enum('payment_method', [
-                'Transfer BCA',
-                'Transfer BNI',
-                'Transfer Mandiri',
-                'QRIS',
-                'Cash'
-            ])
-            ->nullable();
+                    if ($column === 'payment_date') {
+                        $table->date('payment_date')->nullable();
+                    }
 
-
-            $table->enum('payment_status', [
-                'Belum Lunas',
-                'Menunggu Verifikasi',
-                'Lunas'
-            ])
-            ->default('Belum Lunas');
-
-
-            $table->date('payment_date')
-                ->nullable();
-
-
-            $table->string('payment_proof')
-                ->nullable();
-
-
-        });
+                    if ($column === 'payment_proof') {
+                        $table->string('payment_proof')->nullable();
+                    }
+                });
+            }
+        }
     }
-
-
 
     public function down(): void
     {
         Schema::table('rentals', function (Blueprint $table) {
-
-            $table->dropColumn([
+            $columns = [
                 'payment_code',
                 'payment_method',
                 'payment_status',
                 'payment_date',
-                'payment_proof'
-            ]);
+                'payment_proof',
+            ];
 
+            foreach ($columns as $column) {
+                if (Schema::hasColumn('rentals', $column)) {
+                    $table->dropColumn($column);
+                }
+            }
         });
     }
-
 };
