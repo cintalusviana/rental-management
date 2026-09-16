@@ -11,22 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payment_details', function (Blueprint $table) {
-            $table->id();
+        // Jangan membuat ulang jika tabel sudah ada
+        if (!Schema::hasTable('payment_details')) {
+            Schema::create('payment_details', function (Blueprint $table) {
+                $table->id();
 
-            $table->foreignId('payment_id')
-                ->constrained('payments')
-                ->onDelete('cascade');
+                $table->foreignId('payment_id')
+                    ->constrained('payments')
+                    ->onDelete('cascade');
 
-            $table->foreignId('product_id')
-                ->constrained('products')
-                ->onDelete('cascade');
+                $table->foreignId('product_id')
+                    ->constrained('products')
+                    ->onDelete('cascade');
 
-            $table->integer('qty');
-            $table->decimal('price', 15, 2);
+                $table->integer('qty');
+                $table->decimal('price', 15, 2);
 
-            $table->timestamps();
-        });
+                $table->timestamps();
+            });
+        }
     }
 
     /**
