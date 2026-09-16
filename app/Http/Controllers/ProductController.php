@@ -37,11 +37,16 @@ class ProductController extends Controller
         $imageName = null;
 
         if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->file('image')->extension();
 
-            $imageName = time() . '.' . $request->image->extension();
+            $uploadPath = public_path('uploads/products');
 
-            $request->image->move(
-                base_path('../../public_html/uploads/products'),
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0755, true);
+            }
+
+            $request->file('image')->move(
+                $uploadPath,
                 $imageName
             );
         }
@@ -83,16 +88,28 @@ class ProductController extends Controller
             'image'         => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        // Gambar lama tetap dipakai
         $imageName = $product->image;
 
-        // Jika upload gambar baru
         if ($request->hasFile('image')) {
+            $uploadPath = public_path('uploads/products');
 
-            $imageName = time() . '.' . $request->image->extension();
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0755, true);
+            }
 
-            $request->image->move(
-                base_path('../../public_html/uploads/products'),
+            // Hapus gambar lama jika tersedia
+            if ($product->image) {
+                $oldImagePath = $uploadPath . '/' . $product->image;
+
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
+            $imageName = time() . '.' . $request->file('image')->extension();
+
+            $request->file('image')->move(
+                $uploadPath,
                 $imageName
             );
         }
@@ -114,15 +131,13 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        // Hapus file gambar jika ada
         if ($product->image) {
-
-            $path = base_path(
-                '../../public_html/uploads/products/' . $product->image
+            $imagePath = public_path(
+                'uploads/products/' . $product->image
             );
 
-            if (file_exists($path)) {
-                unlink($path);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
             }
         }
 
