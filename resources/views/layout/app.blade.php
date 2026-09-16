@@ -1,2218 +1,1202 @@
-```html
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
-
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Rental Management System</title>
 
-    <!-- Bootstrap -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
         rel="stylesheet"
     >
 
-    <!-- Bootstrap Icons -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
         rel="stylesheet"
     >
 
-    <!-- Font -->
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
 
-<style>
-
-/* =====================================================
-   ROOT
-===================================================== */
-
-:root{
-
-    --sidebar:#111827;
-    --sidebar-hover:#1F2937;
-
-    --primary:#2563EB;
-    --primary-light:#3B82F6;
-
-    --background:#F5F7FB;
-    --white:#FFFFFF;
-
-    --text:#111827;
-    --muted:#94A3B8;
-
-    --border:#E5E7EB;
-
-}
-
-
-/* =====================================================
-   GLOBAL
-===================================================== */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    width:100%;
-    min-height:100%;
-    overflow-x:hidden;
-}
-
-body{
-
-    width:100%;
-    min-height:100vh;
-
-    font-family:'Inter',sans-serif;
-
-    background:var(--background);
-
-    color:var(--text);
-
-    overflow-x:hidden;
-
-}
-
-button,
-input,
-select,
-textarea{
-    font-family:'Inter',sans-serif;
-}
-
-img{
-    max-width:100%;
-}
-
-
-/* =====================================================
-   SIDEBAR
-===================================================== */
-
-.sidebar{
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    width:280px;
-    height:100vh;
-
-    background:var(--sidebar);
-
-    padding:22px;
-
-    display:flex;
-    flex-direction:column;
-
-    z-index:1050;
-
-    transition:
-        left .3s ease,
-        transform .3s ease;
-
-}
-
-
-/* =====================================================
-   LOGO
-===================================================== */
-
-.logo{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-    margin-bottom:28px;
-
-    flex-shrink:0;
-
-}
-
-.logo-icon{
-
-    width:48px;
-    height:48px;
-
-    min-width:48px;
-
-    border-radius:14px;
-
-    background:linear-gradient(
-        135deg,
-        #3B82F6,
-        #2563EB
-    );
-
-    display:flex;
-
-    justify-content:center;
-    align-items:center;
-
-    color:white;
-
-    font-size:22px;
-
-    box-shadow:
-        0 8px 20px rgba(37,99,235,.25);
-
-}
-
-.logo-text{
-    min-width:0;
-}
-
-.logo-text h4{
-
-    margin:0;
-
-    color:white;
-
-    font-size:18px;
-
-    font-weight:700;
-
-}
-
-.logo-text small{
-
-    display:block;
-
-    margin-top:2px;
-
-    color:#94A3B8;
-
-    font-size:12px;
-
-}
-
-
-/* =====================================================
-   ADMIN CARD
-===================================================== */
-
-.admin-card{
-
-    background:#1E293B;
-
-    border-radius:18px;
-
-    padding:18px;
-
-    margin-bottom:26px;
-
-    border:1px solid rgba(255,255,255,.06);
-
-    box-shadow:
-        0 8px 20px rgba(0,0,0,.08);
-
-    flex-shrink:0;
-
-}
-
-.admin-title{
-
-    color:#60A5FA;
-
-    font-size:13px;
-
-    font-weight:700;
-
-    margin-bottom:4px;
-
-}
-
-.admin-name{
-
-    color:white;
-
-    font-size:16px;
-
-    font-weight:600;
-
-    word-break:break-word;
-
-}
-
-.admin-role{
-
-    color:#94A3B8;
-
-    font-size:13px;
-
-    margin-top:2px;
-
-}
-
-
-/* =====================================================
-   MENU TITLE
-===================================================== */
-
-.menu-title{
-
-    color:#6B7280;
-
-    font-size:11px;
-
-    letter-spacing:1px;
-
-    text-transform:uppercase;
-
-    margin-bottom:14px;
-
-    flex-shrink:0;
-
-}
-
-
-/* =====================================================
-   SIDEBAR MENU
-===================================================== */
-
-.sidebar-menu{
-
-    flex:1;
-
-    overflow-y:auto;
-
-    overflow-x:hidden;
-
-    padding-right:3px;
-
-}
-
-
-/* =====================================================
-   SCROLLBAR
-===================================================== */
-
-.sidebar-menu::-webkit-scrollbar{
-
-    width:5px;
-
-}
-
-.sidebar-menu::-webkit-scrollbar-track{
-
-    background:transparent;
-
-}
-
-.sidebar-menu::-webkit-scrollbar-thumb{
-
-    background:#374151;
-
-    border-radius:10px;
-
-}
-
-
-/* =====================================================
-   MENU
-===================================================== */
-
-.menu{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-    padding:13px 16px;
-
-    margin-bottom:6px;
-
-    border-radius:14px;
-
-    color:#9CA3AF;
-
-    text-decoration:none;
-
-    font-size:15px;
-
-    font-weight:500;
-
-    transition:all .25s ease;
-
-}
-
-.menu i{
-
-    width:22px;
-
-    min-width:22px;
-
-    text-align:center;
-
-    font-size:18px;
-
-}
-
-.menu:hover{
-
-    background:var(--sidebar-hover);
-
-    color:white;
-
-    transform:translateX(4px);
-
-}
-
-.menu.active{
-
-    background:linear-gradient(
-        90deg,
-        #2563EB,
-        #3B82F6
-    );
-
-    color:white;
-
-    box-shadow:
-        0 10px 25px rgba(37,99,235,.25);
-
-}
-
-
-/* =====================================================
-   SIDEBAR FOOTER
-===================================================== */
-
-.sidebar-footer{
-
-    padding-top:18px;
-
-    border-top:
-        1px solid rgba(255,255,255,.08);
-
-    flex-shrink:0;
-
-}
-
-
-/* =====================================================
-   CUSTOMER MODE
-===================================================== */
-
-.customer-mode{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    padding:13px 15px;
-
-    border-radius:14px;
-
-    color:#9CA3AF;
-
-    text-decoration:none;
-
-    transition:.25s;
-
-    font-size:14px;
-
-}
-
-.customer-mode:hover{
-
-    background:#1F2937;
-
-    color:white;
-
-}
-
-.customer-mode i{
-
-    font-size:18px;
-
-}
-
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-.logout-btn{
-
-    width:100%;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    padding:13px 15px;
-
-    margin-top:10px;
-
-    border:none;
-
-    border-radius:14px;
-
-    background:transparent;
-
-    color:#EF4444;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-    font-size:14px;
-
-}
-
-.logout-btn:hover{
-
-    background:#7F1D1D;
-
-    color:white;
-
-}
-
-.logout-btn i{
-
-    font-size:18px;
-
-}
-
-
-/* =====================================================
-   MAIN
-===================================================== */
-
-.main{
-
-    margin-left:280px;
-
-    min-height:100vh;
-
-    width:calc(100% - 280px);
-
-    padding:22px;
-
-    transition:
-        margin-left .3s ease,
-        width .3s ease;
-
-}
-
-
-/* =====================================================
-   TOPBAR
-===================================================== */
-
-.topbar{
-
-    min-height:64px;
-
-    background:#FFFFFF;
-
-    border-radius:18px;
-
-    padding:10px 18px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:15px;
-
-    margin-bottom:20px;
-
-    border:1px solid #E5E7EB;
-
-    box-shadow:
-        0 5px 20px rgba(15,23,42,.04);
-
-}
-
-
-/* =====================================================
-   BREADCRUMB
-===================================================== */
-
-.breadcrumb-bar{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    min-width:0;
-
-    flex:1;
-
-}
-
-
-/* =====================================================
-   HOME
-===================================================== */
-
-.breadcrumb-home{
-
-    width:40px;
-
-    height:40px;
-
-    min-width:40px;
-
-    border-radius:12px;
-
-    background:#EFF6FF;
-
-    color:#2563EB;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:17px;
-
-}
-
-
-/* =====================================================
-   ARROW
-===================================================== */
-
-.breadcrumb-arrow{
-
-    color:#CBD5E1;
-
-    font-size:14px;
-
-    flex-shrink:0;
-
-}
-
-
-/* =====================================================
-   CURRENT PAGE
-===================================================== */
-
-.breadcrumb-current{
-
-    font-size:14px;
-
-    font-weight:600;
-
-    color:#334155;
-
-    white-space:nowrap;
-
-    overflow:hidden;
-
-    text-overflow:ellipsis;
-
-}
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-.profile{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-    flex-shrink:0;
-
-}
-
-
-/* =====================================================
-   PROFILE INFO
-===================================================== */
-
-.profile-info{
-
-    text-align:right;
-
-    padding-left:4px;
-
-    min-width:0;
-
-}
-
-.profile-info h6{
-
-    margin:0;
-
-    font-size:13px;
-
-    font-weight:700;
-
-    color:#111827;
-
-    white-space:nowrap;
-
-    overflow:hidden;
-
-    text-overflow:ellipsis;
-
-    max-width:180px;
-
-}
-
-.profile-info small{
-
-    display:block;
-
-    margin-top:3px;
-
-    color:#94A3B8;
-
-    font-size:11px;
-
-    white-space:nowrap;
-
-    overflow:hidden;
-
-    text-overflow:ellipsis;
-
-    max-width:180px;
-
-}
-
-
-/* =====================================================
-   AVATAR
-===================================================== */
-
-.avatar{
-
-    width:44px;
-
-    height:44px;
-
-    min-width:44px;
-
-    border-radius:14px;
-
-    background:linear-gradient(
-        135deg,
-        #2563EB,
-        #3B82F6
-    );
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:#FFFFFF;
-
-    font-size:15px;
-
-    font-weight:700;
-
-    box-shadow:
-        0 6px 15px rgba(37,99,235,.20);
-
-}
-
-
-/* =====================================================
-   CONTENT CARD
-===================================================== */
-
-.content-card{
-
-    width:100%;
-
-    background:white;
-
-    border-radius:20px;
-
-    padding:25px;
-
-    box-shadow:
-        0 10px 30px rgba(15,23,42,.05);
-
-}
-
-
-/* =====================================================
-   DASHBOARD HEADER
-===================================================== */
-
-.dashboard-header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:28px;
-
-    flex-wrap:wrap;
-
-    gap:20px;
-
-}
-
-.dashboard-left{
-
-    min-width:0;
-
-}
-
-.dashboard-left h1{
-
-    font-size:26px;
-
-    font-weight:700;
-
-    margin-bottom:4px;
-
-}
-
-.dashboard-left p{
-
-    margin:0;
-
-    color:#6B7280;
-
-}
-
-.breadcrumb-dashboard{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    color:#94A3B8;
-
-    font-size:14px;
-
-    margin-bottom:10px;
-
-}
-
-.dashboard-right{
-
-    display:flex;
-
-    gap:12px;
-
-    flex-wrap:wrap;
-
-}
-
-
-/* =====================================================
-   BUTTON
-===================================================== */
-
-.btn-month,
-.btn-download{
-
-    padding:11px 18px;
-
-    border-radius:12px;
-
-    font-size:14px;
-
-    font-weight:600;
-
-}
-
-.btn-month{
-
-    background:white;
-
-    border:1px solid #E5E7EB;
-
-}
-
-.btn-download{
-
-    background:#2563EB;
-
-    color:white;
-
-    border:none;
-
-}
-
-.btn-download:hover{
-
-    background:#1D4ED8;
-
-}
-
-
-/* =====================================================
-   SUMMARY CARD
-===================================================== */
-
-.summary-card{
-
-    background:white;
-
-    border-radius:18px;
-
-    padding:16px;
-
-    height:100%;
-
-    min-height:140px;
-
-    border:1px solid #EEF2F7;
-
-    box-shadow:
-        0 10px 30px rgba(15,23,42,.06);
-
-    transition:.25s;
-
-}
-
-.summary-card:hover{
-
-    transform:translateY(-4px);
-
-    box-shadow:
-        0 15px 35px rgba(15,23,42,.10);
-
-}
-
-.summary-top{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:10px;
-
-}
-
-.summary-title{
-
-    font-size:12px;
-
-    color:#94A3B8;
-
-    font-weight:700;
-
-}
-
-.summary-card h2{
-
-    font-size:26px;
-
-    margin:5px 0;
-
-}
-
-.summary-card p{
-
-    margin:0;
-
-    color:#94A3B8;
-
-}
-
-
-/* =====================================================
-   SUMMARY ICON
-===================================================== */
-
-.summary-icon{
-
-    width:60px;
-
-    height:60px;
-
-    min-width:60px;
-
-    border-radius:18px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    color:white;
-
-    font-size:26px;
-
-}
-
-.blue{
-    background:#2563EB;
-}
-
-.green{
-    background:#16A34A;
-}
-
-.orange{
-    background:#F97316;
-}
-
-.purple{
-    background:#7C3AED;
-}
-
-.cyan{
-    background:#06B6D4;
-}
-
-.pink{
-    background:#EC4899;
-}
-
-
-/* =====================================================
-   SUMMARY FOOTER
-===================================================== */
-
-.summary-footer{
-
-    margin-top:18px;
-
-    padding-top:15px;
-
-    border-top:1px solid #EEF2F7;
-
-    font-size:13px;
-
-}
-
-.success{
-    color:#16A34A;
-}
-
-.danger{
-    color:#DC2626;
-}
-
-
-/* =====================================================
-   DASHBOARD CARD
-===================================================== */
-
-.dashboard-card{
-
-    background:white;
-
-    border-radius:22px;
-
-    padding:25px;
-
-    border:1px solid #EEF2F7;
-
-    box-shadow:
-        0 10px 30px rgba(15,23,42,.05);
-
-}
-
-.dashboard-card-title{
-
-    font-size:20px;
-
-    font-weight:700;
-
-}
-
-
-/* =====================================================
-   TABLE GLOBAL
-===================================================== */
-
-.table{
-
-    width:100%;
-
-}
-
-.table thead th{
-
-    background:#F8FAFC;
-
-    border:none;
-
-    padding:16px;
-
-    font-size:13px;
-
-    color:#64748B;
-
-}
-
-.table tbody td{
-
-    padding:18px 16px;
-
-    vertical-align:middle;
-
-    border-top:1px solid #F1F5F9;
-
-}
-
-.table tbody tr:hover{
-
-    background:#F8FAFC;
-
-}
-
-
-/* =====================================================
-   ACTIVITY
-===================================================== */
-
-.activity-item{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-}
-
-.activity-icon{
-
-    width:42px;
-
-    height:42px;
-
-    min-width:42px;
-
-    border-radius:12px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:white;
-
-}
-
-
-/* =====================================================
-   BADGE
-===================================================== */
-
-.badge{
-
-    padding:8px 14px;
-
-    border-radius:30px;
-
-}
-
-
-/* =====================================================
-   LARGE TABLET
-===================================================== */
-
-@media(max-width:1199px){
-
-    .sidebar{
-
-        width:260px;
-
-        padding:20px;
-
-    }
-
-    .main{
-
-        margin-left:260px;
-
-        width:calc(100% - 260px);
-
-        padding:20px;
-
-    }
-
-    .menu{
-
-        padding:12px 14px;
-
-        font-size:14px;
-
-    }
-
-    .menu i{
-
-        font-size:17px;
-
-    }
-
-    .profile-info h6{
-
-        max-width:150px;
-
-    }
-
-}
-
-
-/* =====================================================
-   TABLET
-===================================================== */
-
-@media(max-width:991px){
-
-    .sidebar{
-
-        width:240px;
-
-        left:0;
-
-        padding:20px;
-
-        box-shadow:12px 0 35px rgba(15,23,42,.10);
-
-    }
-
-    .main{
-
-        margin-left:240px;
-
-        width:calc(100% - 240px);
-
-        padding:20px;
-
-    }
-
-    .topbar{
-
-        margin-bottom:18px;
-
-    }
-
-    .content-card{
-
-        padding:22px;
-
-    }
-
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media(max-width:768px){
-
-    body{
-
-        font-size:14px;
-
-    }
-
-
-    /* MAIN */
-
-    .main{
-
-        width:100%;
-
-        padding:14px;
-
-    }
-
-
-    /* TOPBAR */
-
-    .topbar{
-
-        width:100%;
-
-        min-height:64px;
-
-        padding:10px 12px;
-
-        border-radius:15px;
-
-        margin-bottom:15px;
-
-        gap:10px;
-
-    }
-
-
-    /* BREADCRUMB */
-
-    .breadcrumb-bar{
-
-        gap:8px;
-
-    }
-
-    .breadcrumb-home{
-
-        width:42px;
-
-        height:42px;
-
-        min-width:42px;
-
-        border-radius:11px;
-
-        font-size:17px;
-
-    }
-
-    .breadcrumb-arrow{
-
-        font-size:12px;
-
-    }
-
-    .breadcrumb-current{
-
-        font-size:14px;
-
-        max-width:160px;
-
-    }
-
-
-    /* PROFILE */
-
-    .profile{
-
-        gap:8px;
-
-    }
-
-    .profile-info{
-
-        display:none;
-
-    }
-
-    .avatar{
-
-        width:42px;
-
-        height:42px;
-
-        min-width:42px;
-
-        border-radius:11px;
-
-        font-size:14px;
-
-    }
-
-
-    /* CONTENT */
-
-    .content-card{
-
-        width:100%;
-
-        padding:18px;
-
-        border-radius:16px;
-
-    }
-
-
-    /* DASHBOARD */
-
-    .dashboard-header{
-
-        align-items:flex-start;
-
-        gap:15px;
-
-        margin-bottom:20px;
-
-    }
-
-    .dashboard-left{
-
-        width:100%;
-
-    }
-
-    .breadcrumb-dashboard{
-
-        font-size:12px;
-
-        margin-bottom:8px;
-
-    }
-
-    .dashboard-left h1{
-
-        font-size:23px;
-
-        line-height:1.25;
-
-    }
-
-    .dashboard-left p{
-
-        font-size:13px;
-
-        line-height:1.5;
-
-    }
-
-    .dashboard-right{
-
-        width:100%;
-
-        gap:8px;
-
-    }
-
-    .dashboard-right .btn-month,
-    .dashboard-right .btn-download{
-
-        flex:1;
-
-        padding:10px 12px;
-
-        font-size:12px;
-
-    }
-
-
-    /* SUMMARY */
-
-    .summary-card{
-
-        min-height:130px;
-
-        padding:15px;
-
-        border-radius:15px;
-
-    }
-
-    .summary-icon{
-
-        width:50px;
-
-        height:50px;
-
-        min-width:50px;
-
-        border-radius:14px;
-
-        font-size:22px;
-
-    }
-
-    .summary-title{
-
-        font-size:11px;
-
-    }
-
-    .summary-card h2{
-
-        font-size:22px;
-
-    }
-
-    .summary-card p{
-
-        font-size:11px;
-
-    }
-
-
-    /* DASHBOARD CARD */
-
-    .dashboard-card{
-
-        padding:18px;
-
-        border-radius:17px;
-
-    }
-
-    .dashboard-card-title{
-
-        font-size:17px;
-
-    }
-
-
-    /* TABLE */
-
-    .table-responsive{
-
-        width:100%;
-
-        overflow-x:auto;
-
-        -webkit-overflow-scrolling:touch;
-
-    }
-
-    .table{
-
-        min-width:650px;
-
-    }
-
-    .table thead th{
-
-        padding:13px 12px;
-
-        font-size:11px;
-
-        white-space:nowrap;
-
-    }
-
-    .table tbody td{
-
-        padding:14px 12px;
-
-        font-size:12px;
-
-        white-space:nowrap;
-
-    }
-
-
-    /* BADGE */
-
-    .badge{
-
-        padding:6px 10px;
-
-        font-size:11px;
-
-    }
-
-}
-
-
-/* =====================================================
-   HP KECIL
-===================================================== */
-
-@media(max-width:480px){
-
-    .main{
-
-        padding:10px;
-
-    }
-
-
-    .topbar{
-
-        min-height:60px;
-
-        padding:9px 10px;
-
-        border-radius:14px;
-
-        margin-bottom:12px;
-
-    }
-
-    .sidebar{
-
-        width:210px;
-
-        left:0;
-
-        padding:16px;
-
-    }
-
-    .main{
-
-        margin-left:210px;
-
-        width:calc(100% - 210px);
-
-    }
-
-
-    /* BREADCRUMB */
-
-    .breadcrumb-bar{
-
-        gap:6px;
-
-    }
-
-    .breadcrumb-home{
-
-        width:40px;
-
-        height:40px;
-
-        min-width:40px;
-
-    }
-
-    .breadcrumb-current{
-
-        font-size:13px;
-
-        max-width:110px;
-
-    }
-
-
-    /* PROFILE */
-
-    .profile{
-
-        gap:6px;
-
-    }
-
-    .avatar{
-
-        width:40px;
-
-        height:40px;
-
-        min-width:40px;
-
-        border-radius:11px;
-
-    }
-
-
-    /* CONTENT */
-
-    .content-card{
-
-        padding:15px;
-
-        border-radius:14px;
-
-    }
-
-
-    /* DASHBOARD */
-
-    .dashboard-left h1{
-
-        font-size:21px;
-
-    }
-
-    .dashboard-left p{
-
-        font-size:12px;
-
-    }
-
-    .breadcrumb-dashboard{
-
-        font-size:11px;
-
-    }
-
-
-    /* BUTTON */
-
-    .dashboard-right{
-
-        flex-direction:column;
-
-    }
-
-    .dashboard-right .btn-month,
-    .dashboard-right .btn-download{
-
-        width:100%;
-
-        flex:none;
-
-        min-height:42px;
-
-        font-size:12px;
-
-    }
-
-
-    /* SUMMARY */
-
-    .summary-card{
-
-        min-height:120px;
-
-        padding:13px;
-
-    }
-
-    .summary-icon{
-
-        width:45px;
-
-        height:45px;
-
-        min-width:45px;
-
-        border-radius:13px;
-
-        font-size:20px;
-
-    }
-
-    .summary-title{
-
-        font-size:10px;
-
-    }
-
-    .summary-card h2{
-
-        font-size:20px;
-
-    }
-
-    .summary-card p{
-
-        font-size:10px;
-
-    }
-
-
-    /* DASHBOARD CARD */
-
-    .dashboard-card{
-
-        padding:15px;
-
-        border-radius:15px;
-
-    }
-
-    .dashboard-card-title{
-
-        font-size:16px;
-
-    }
-
-}
-
-
-/* =====================================================
-   HP SANGAT KECIL
-===================================================== */
-
-@media(max-width:360px){
-
-    .main{
-
-        padding:8px;
-
-    }
-
-    .topbar{
-
-        padding:8px;
-
-        gap:5px;
-
-    }
-
-    .breadcrumb-current{
-
-        max-width:85px;
-
-        font-size:12px;
-
-    }
-
-    .avatar{
-
-        width:38px;
-
-        height:38px;
-
-        min-width:38px;
-
-    }
-
-    .content-card{
-
-        padding:13px;
-
-    }
-
-}
-
-
-/* =====================================================
-   PREVENT HORIZONTAL OVERFLOW
-===================================================== */
-
-.container,
-.container-fluid{
-
-    max-width:100%;
-
-}
-
-.row{
-
-    --bs-gutter-x:1rem;
-
-}
-
-</style>
-
+    <style>
+        :root {
+            --sidebar: #111827;
+            --sidebar-hover: #1f2937;
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --background: #f5f7fb;
+            --white: #ffffff;
+            --text: #111827;
+            --muted: #94a3b8;
+            --border: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            width: 100%;
+            min-height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: 'Inter', sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            padding: 22px;
+            background: var(--sidebar);
+            display: flex;
+            flex-direction: column;
+            z-index: 1050;
+            transition: all .3s ease;
+        }
+
+        /* LOGO */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+            flex-shrink: 0;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 22px;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, .25);
+        }
+
+        .logo-text {
+            min-width: 0;
+        }
+
+        .logo-text h4 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .logo-text small {
+            display: block;
+            margin-top: 2px;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        /* ADMIN CARD */
+
+        .admin-card {
+            padding: 18px;
+            margin-bottom: 26px;
+            background: #1e293b;
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+            flex-shrink: 0;
+        }
+
+        .admin-title {
+            margin-bottom: 4px;
+            color: #60a5fa;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .admin-name {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            overflow-wrap: anywhere;
+        }
+
+        .admin-role {
+            margin-top: 2px;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        /* MENU TITLE */
+
+        .menu-title {
+            margin-bottom: 14px;
+            color: #6b7280;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        /* SIDEBAR MENU */
+
+        .sidebar-menu {
+            flex: 1;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding-right: 3px;
+        }
+
+        .sidebar-menu::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .sidebar-menu::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar-menu::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 10px;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 13px 16px;
+            margin-bottom: 6px;
+            color: #9ca3af;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all .25s ease;
+        }
+
+        .menu i {
+            width: 22px;
+            min-width: 22px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .menu:hover {
+            color: #ffffff;
+            background: var(--sidebar-hover);
+            transform: translateX(4px);
+        }
+
+        .menu.active {
+            color: #ffffff;
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, .25);
+        }
+
+        /* SIDEBAR FOOTER */
+
+        .sidebar-footer {
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            flex-shrink: 0;
+        }
+
+        .customer-mode {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 15px;
+            color: #9ca3af;
+            border-radius: 14px;
+            font-size: 14px;
+            transition: all .25s ease;
+        }
+
+        .customer-mode:hover {
+            color: #ffffff;
+            background: #1f2937;
+        }
+
+        .customer-mode i {
+            font-size: 18px;
+        }
+
+        .logout-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 15px;
+            margin-top: 10px;
+            color: #ef4444;
+            background: transparent;
+            border: none;
+            border-radius: 14px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all .25s ease;
+        }
+
+        .logout-btn:hover {
+            color: #ffffff;
+            background: #7f1d1d;
+        }
+
+        .logout-btn i {
+            font-size: 18px;
+        }
+
+        /* MAIN */
+
+        .main {
+            width: calc(100% - 280px);
+            min-height: 100vh;
+            margin-left: 280px;
+            padding: 22px;
+            transition: all .3s ease;
+        }
+
+        /* TOPBAR */
+
+        .topbar {
+            min-height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 10px 18px;
+            margin-bottom: 20px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, .04);
+        }
+
+        /* BREADCRUMB */
+
+        .breadcrumb-bar {
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .breadcrumb-home {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2563eb;
+            background: #eff6ff;
+            border-radius: 12px;
+            font-size: 17px;
+        }
+
+        .breadcrumb-arrow {
+            color: #cbd5e1;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .breadcrumb-current {
+            min-width: 0;
+            color: #334155;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* PROFILE */
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+        }
+
+        .profile-info {
+            min-width: 0;
+            padding-left: 4px;
+            text-align: right;
+        }
+
+        .profile-info h6 {
+            max-width: 180px;
+            margin: 0;
+            color: #111827;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .profile-info small {
+            display: block;
+            max-width: 180px;
+            margin-top: 3px;
+            color: #94a3b8;
+            font-size: 11px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .avatar {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            box-shadow: 0 6px 15px rgba(37, 99, 235, .20);
+        }
+
+        /* CONTENT */
+
+        .content-card {
+            width: 100%;
+            padding: 25px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, .05);
+        }
+
+        /* DASHBOARD */
+
+        .dashboard-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .dashboard-left {
+            min-width: 0;
+        }
+
+        .dashboard-left h1 {
+            margin-bottom: 4px;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .dashboard-left p {
+            margin: 0;
+            color: #6b7280;
+        }
+
+        .breadcrumb-dashboard {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .dashboard-right {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        /* BUTTON */
+
+        .btn-month,
+        .btn-download {
+            padding: 11px 18px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .btn-month {
+            color: #111827;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+        }
+
+        .btn-download {
+            color: #ffffff;
+            background: #2563eb;
+            border: none;
+        }
+
+        .btn-download:hover {
+            background: #1d4ed8;
+        }
+
+        /* SUMMARY */
+
+        .summary-card {
+            height: 100%;
+            min-height: 140px;
+            padding: 16px;
+            background: #ffffff;
+            border: 1px solid #eef2f7;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, .06);
+            transition: all .25s ease;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(15, 23, 42, .10);
+        }
+
+        .summary-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .summary-title {
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .summary-card h2 {
+            margin: 5px 0;
+            font-size: 26px;
+        }
+
+        .summary-card p {
+            margin: 0;
+            color: #94a3b8;
+        }
+
+        .summary-icon {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            border-radius: 18px;
+            font-size: 26px;
+        }
+
+        .blue {
+            background: #2563eb;
+        }
+
+        .green {
+            background: #16a34a;
+        }
+
+        .orange {
+            background: #f97316;
+        }
+
+        .purple {
+            background: #7c3aed;
+        }
+
+        .cyan {
+            background: #06b6d4;
+        }
+
+        .pink {
+            background: #ec4899;
+        }
+
+        .summary-footer {
+            padding-top: 15px;
+            margin-top: 18px;
+            border-top: 1px solid #eef2f7;
+            font-size: 13px;
+        }
+
+        .success {
+            color: #16a34a;
+        }
+
+        .danger {
+            color: #dc2626;
+        }
+
+        /* DASHBOARD CARD */
+
+        .dashboard-card {
+            padding: 25px;
+            background: #ffffff;
+            border: 1px solid #eef2f7;
+            border-radius: 22px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, .05);
+        }
+
+        .dashboard-card-title {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        /* TABLE */
+
+        .table {
+            width: 100%;
+        }
+
+        .table thead th {
+            padding: 16px;
+            color: #64748b;
+            background: #f8fafc;
+            border: none;
+            font-size: 13px;
+        }
+
+        .table tbody td {
+            padding: 18px 16px;
+            vertical-align: middle;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .table tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        /* ACTIVITY */
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .activity-icon {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            border-radius: 12px;
+        }
+
+        /* BADGE STATUS */
+
+        .badge {
+            padding: 8px 14px;
+            border-radius: 30px;
+        }
+
+        /* TABLET BESAR */
+
+        @media (max-width: 1199px) {
+            .sidebar {
+                width: 260px;
+                padding: 20px;
+            }
+
+            .main {
+                width: calc(100% - 260px);
+                margin-left: 260px;
+                padding: 20px;
+            }
+
+            .menu {
+                padding: 12px 14px;
+                font-size: 14px;
+            }
+
+            .menu i {
+                font-size: 17px;
+            }
+
+            .profile-info h6,
+            .profile-info small {
+                max-width: 150px;
+            }
+        }
+
+        /* TABLET */
+
+        @media (max-width: 991px) {
+            .sidebar {
+                width: 240px;
+                padding: 20px;
+                box-shadow: 12px 0 35px rgba(15, 23, 42, .10);
+            }
+
+            .main {
+                width: calc(100% - 240px);
+                margin-left: 240px;
+                padding: 20px;
+            }
+
+            .content-card {
+                padding: 22px;
+            }
+
+            .topbar {
+                margin-bottom: 18px;
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                min-height: auto;
+                padding: 18px;
+            }
+
+            .sidebar-menu {
+                overflow: visible;
+            }
+
+            .sidebar-footer {
+                margin-top: 15px;
+            }
+
+            .main {
+                width: 100%;
+                margin-left: 0;
+                padding: 14px;
+            }
+
+            .topbar {
+                width: 100%;
+                min-height: 64px;
+                padding: 10px 12px;
+                margin-bottom: 15px;
+                border-radius: 15px;
+                gap: 10px;
+            }
+
+            .breadcrumb-bar {
+                gap: 8px;
+            }
+
+            .breadcrumb-home {
+                width: 42px;
+                height: 42px;
+                min-width: 42px;
+                border-radius: 11px;
+            }
+
+            .breadcrumb-current {
+                max-width: 160px;
+                font-size: 14px;
+            }
+
+            .profile {
+                gap: 8px;
+            }
+
+            .profile-info {
+                display: none;
+            }
+
+            .avatar {
+                width: 42px;
+                height: 42px;
+                min-width: 42px;
+                border-radius: 11px;
+                font-size: 14px;
+            }
+
+            .content-card {
+                padding: 18px;
+                border-radius: 16px;
+            }
+
+            .dashboard-header {
+                align-items: flex-start;
+                gap: 15px;
+                margin-bottom: 20px;
+            }
+
+            .dashboard-left {
+                width: 100%;
+            }
+
+            .dashboard-left h1 {
+                font-size: 23px;
+                line-height: 1.25;
+            }
+
+            .dashboard-left p {
+                font-size: 13px;
+                line-height: 1.5;
+            }
+
+            .breadcrumb-dashboard {
+                margin-bottom: 8px;
+                font-size: 12px;
+            }
+
+            .dashboard-right {
+                width: 100%;
+                gap: 8px;
+            }
+
+            .dashboard-right .btn-month,
+            .dashboard-right .btn-download {
+                flex: 1;
+                padding: 10px 12px;
+                font-size: 12px;
+            }
+
+            .summary-card {
+                min-height: 130px;
+                padding: 15px;
+                border-radius: 15px;
+            }
+
+            .summary-icon {
+                width: 50px;
+                height: 50px;
+                min-width: 50px;
+                border-radius: 14px;
+                font-size: 22px;
+            }
+
+            .summary-title {
+                font-size: 11px;
+            }
+
+            .summary-card h2 {
+                font-size: 22px;
+            }
+
+            .summary-card p {
+                font-size: 11px;
+            }
+
+            .dashboard-card {
+                padding: 18px;
+                border-radius: 17px;
+            }
+
+            .dashboard-card-title {
+                font-size: 17px;
+            }
+
+            .table-responsive {
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .table {
+                min-width: 650px;
+            }
+
+            .table thead th {
+                padding: 13px 12px;
+                font-size: 11px;
+                white-space: nowrap;
+            }
+
+            .table tbody td {
+                padding: 14px 12px;
+                font-size: 12px;
+                white-space: nowrap;
+            }
+
+            .badge {
+                padding: 6px 10px;
+                font-size: 11px;
+            }
+        }
+
+        /* HP KECIL */
+
+        @media (max-width: 480px) {
+            .sidebar {
+                padding: 16px;
+            }
+
+            .main {
+                padding: 10px;
+            }
+
+            .topbar {
+                min-height: 60px;
+                padding: 9px 10px;
+                margin-bottom: 12px;
+                border-radius: 14px;
+            }
+
+            .breadcrumb-bar {
+                gap: 6px;
+            }
+
+            .breadcrumb-home {
+                width: 40px;
+                height: 40px;
+                min-width: 40px;
+            }
+
+            .breadcrumb-current {
+                max-width: 110px;
+                font-size: 13px;
+            }
+
+            .profile {
+                gap: 6px;
+            }
+
+            .avatar {
+                width: 40px;
+                height: 40px;
+                min-width: 40px;
+                border-radius: 11px;
+            }
+
+            .content-card {
+                padding: 15px;
+                border-radius: 14px;
+            }
+
+            .dashboard-left h1 {
+                font-size: 21px;
+            }
+
+            .dashboard-left p {
+                font-size: 12px;
+            }
+
+            .breadcrumb-dashboard {
+                font-size: 11px;
+            }
+
+            .dashboard-right {
+                flex-direction: column;
+            }
+
+            .dashboard-right .btn-month,
+            .dashboard-right .btn-download {
+                width: 100%;
+                min-height: 42px;
+                flex: none;
+                font-size: 12px;
+            }
+
+            .summary-card {
+                min-height: 120px;
+                padding: 13px;
+            }
+
+            .summary-icon {
+                width: 45px;
+                height: 45px;
+                min-width: 45px;
+                border-radius: 13px;
+                font-size: 20px;
+            }
+
+            .summary-title {
+                font-size: 10px;
+            }
+
+            .summary-card h2 {
+                font-size: 20px;
+            }
+
+            .summary-card p {
+                font-size: 10px;
+            }
+
+            .dashboard-card {
+                padding: 15px;
+                border-radius: 15px;
+            }
+
+            .dashboard-card-title {
+                font-size: 16px;
+            }
+        }
+
+        /* HP SANGAT KECIL */
+
+        @media (max-width: 360px) {
+            .main {
+                padding: 8px;
+            }
+
+            .topbar {
+                padding: 8px;
+                gap: 5px;
+            }
+
+            .breadcrumb-current {
+                max-width: 85px;
+                font-size: 12px;
+            }
+
+            .avatar {
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
+            }
+
+            .content-card {
+                padding: 13px;
+            }
+        }
+
+        .container,
+        .container-fluid {
+            max-width: 100%;
+        }
+
+        .row {
+            --bs-gutter-x: 1rem;
+        }
+    </style>
 </head>
-
 
 <body>
 
+    <!-- SIDEBAR -->
 
-<!-- =====================================================
-     SIDEBAR
-===================================================== -->
+    <aside class="sidebar" id="sidebar">
 
-<div
-    class="sidebar"
-    id="sidebar"
->
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="bi bi-box-seam"></i>
+            </div>
 
-
-    <!-- =================================================
-         LOGO
-    ================================================== -->
-
-    <div class="logo">
-
-        <div class="logo-icon">
-
-            <i class="bi bi-box-seam"></i>
-
+            <div class="logo-text">
+                <h4>Rental</h4>
+                <small>Management System</small>
+            </div>
         </div>
 
-        <div class="logo-text">
+        <div class="admin-card">
+            <div class="admin-title">MODE ADMIN</div>
 
-            <h4>
-                Rental
-            </h4>
+            <div class="admin-name">
+                {{ auth()->user()->name ?? 'Administrator' }}
+            </div>
 
-            <small>
-                Management System
-            </small>
-
+            <div class="admin-role">
+                Administrator
+            </div>
         </div>
 
-    </div>
-
-
-    <!-- =================================================
-         ADMIN CARD
-    ================================================== -->
-
-    <div class="admin-card">
-
-        <div class="admin-title">
-            MODE ADMIN
+        <div class="menu-title">
+            MENU UTAMA
         </div>
 
-        <div class="admin-name">
-
-            {{ auth()->user()->name ?? 'Administrator' }}
-
-        </div>
-
-        <div class="admin-role">
-
-            Administrator
-
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         MENU TITLE
-    ================================================== -->
-
-    <div class="menu-title">
-        MENU UTAMA
-    </div>
-
-
-    <!-- =================================================
-         SIDEBAR MENU
-    ================================================== -->
-
-    <div class="sidebar-menu">
-
-
-        <!-- DASHBOARD -->
-
-        <a
-            href="{{ route('dashboard') }}"
-            class="menu {{ request()->routeIs('dashboard') ? 'active' : '' }}"
-        >
-
-            <i class="bi bi-grid-1x2-fill"></i>
-
-            <span>
-                Dashboard
-            </span>
-
-        </a>
-
-
-        <!-- KATEGORI -->
-
-        <a
-            href="{{ route('categories.index') }}"
-            class="menu {{ request()->routeIs('categories.*') ? 'active' : '' }}"
-        >
-
-            <i class="bi bi-tags-fill"></i>
-
-            <span>
-                Kategori
-            </span>
-
-        </a>
-
-
-        <!-- BARANG -->
-
-        <a
-            href="{{ route('products.index') }}"
-            class="menu {{ request()->routeIs('products.*') ? 'active' : '' }}"
-        >
-
-            <i class="bi bi-box-seam-fill"></i>
-
-            <span>
-                Data Barang
-            </span>
-
-        </a>
-
-
-        <!-- PELANGGAN -->
-
-        <a
-            href="{{ route('customers.index') }}"
-            class="menu {{ request()->routeIs('customers.*') ? 'active' : '' }}"
-        >
-
-            <i class="bi bi-people-fill"></i>
-
-            <span>
-                Data Pelanggan
-            </span>
-
-        </a>
-
-
-        <!-- TRANSAKSI RENTAL -->
-
-        <a
-            href="{{ route('rentals.index') }}"
-            class="menu {{ request()->routeIs('rentals.*') ? 'active' : '' }}"
-        >
-
-            <i class="bi bi-calendar-check-fill"></i>
-
-            <span>
-                Transaksi Rental
-            </span>
-
-        </a>
-
-
-        <!-- PEMBAYARAN -->
-
-        <a
-            href="{{ route('payments.index') }}"
-            class="menu {{ request()->routeIs('payments.*') ? 'active' : '' }}"
-        >
-
-            <i class="bi bi-credit-card-fill"></i>
-
-            <span>
-                Pembayaran
-            </span>
-
-        </a>
-
-
-        <!-- LAPORAN -->
-
-        <a
-            href="{{ route('reports.index') }}"
-            class="menu {{ request()->routeIs('reports.*') ? 'active' : '' }}"
-        >
-
-            <i class="bi bi-bar-chart-fill"></i>
-
-            <span>
-                Laporan
-            </span>
-
-        </a>
-
-
-    </div>
-
-
-    <!-- =================================================
-         SIDEBAR FOOTER
-    ================================================== -->
-
-    <div class="sidebar-footer">
-
-
-        <!-- CUSTOMER MODE -->
-
-        <a
-            href="{{ route('admin.customer-mode.index') }}"
-            class="customer-mode"
-        >
-
-            <i class="bi bi-person-circle"></i>
-
-            <span>
-                Lihat Mode Pelanggan
-            </span>
-
-        </a>
-
-
-        <!-- LOGOUT -->
-
-        <form
-            method="POST"
-            action="{{ route('logout') }}"
-        >
-
-            @csrf
-
-            <button
-                type="submit"
-                class="logout-btn"
+        <div class="sidebar-menu">
+
+            <a
+                href="{{ route('dashboard') }}"
+                class="menu {{ request()->routeIs('dashboard') ? 'active' : '' }}"
             >
+                <i class="bi bi-grid-1x2-fill"></i>
+                <span>Dashboard</span>
+            </a>
 
-                <i class="bi bi-box-arrow-right"></i>
+            <a
+                href="{{ route('categories.index') }}"
+                class="menu {{ request()->routeIs('categories.*') ? 'active' : '' }}"
+            >
+                <i class="bi bi-tags-fill"></i>
+                <span>Kategori</span>
+            </a>
 
-                <span>
-                    Logout
-                </span>
+            <a
+                href="{{ route('products.index') }}"
+                class="menu {{ request()->routeIs('products.*') ? 'active' : '' }}"
+            >
+                <i class="bi bi-box-seam-fill"></i>
+                <span>Data Barang</span>
+            </a>
 
-            </button>
+            <a
+                href="{{ route('customers.index') }}"
+                class="menu {{ request()->routeIs('customers.*') ? 'active' : '' }}"
+            >
+                <i class="bi bi-people-fill"></i>
+                <span>Data Pelanggan</span>
+            </a>
 
-        </form>
+            <a
+                href="{{ route('rentals.index') }}"
+                class="menu {{ request()->routeIs('rentals.*') ? 'active' : '' }}"
+            >
+                <i class="bi bi-calendar-check-fill"></i>
+                <span>Transaksi Rental</span>
+            </a>
 
+            <a
+                href="{{ route('payments.index') }}"
+                class="menu {{ request()->routeIs('payments.*') ? 'active' : '' }}"
+            >
+                <i class="bi bi-credit-card-fill"></i>
+                <span>Pembayaran</span>
+            </a>
 
-    </div>
-
-
-</div>
-
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
-<div class="main">
-
-
-    <!-- =================================================
-         TOPBAR
-    ================================================== -->
-
-    <div class="topbar">
-
-
-        <!-- =================================================
-             BREADCRUMB
-        ================================================== -->
-
-        <div class="breadcrumb-bar">
-
-
-            <!-- HOME -->
-
-            <div class="breadcrumb-home">
-
-                <i class="bi bi-house-fill"></i>
-
-            </div>
-
-
-            <!-- ARROW -->
-
-            <i class="bi bi-chevron-right breadcrumb-arrow"></i>
-
-
-            <!-- CURRENT PAGE -->
-
-            <div class="breadcrumb-current">
-
-                @if(request()->routeIs('dashboard'))
-
-                    Dashboard
-
-                @elseif(request()->routeIs('categories.*'))
-
-                    Kategori
-
-                @elseif(request()->routeIs('products.*'))
-
-                    Data Barang
-
-                @elseif(request()->routeIs('customers.*'))
-
-                    Data Pelanggan
-
-                @elseif(request()->routeIs('rentals.*'))
-
-                    Transaksi Rental
-
-                @elseif(request()->routeIs('payments.*'))
-
-                    Pembayaran
-
-                @elseif(request()->routeIs('reports.*'))
-
-                    Laporan
-
-                @elseif(request()->routeIs('pengembalian.*'))
-
-                    Pengembalian
-
-                @else
-
-                    Dashboard
-
-                @endif
-
-            </div>
-
+            <a
+                href="{{ route('reports.index') }}"
+                class="menu {{ request()->routeIs('reports.*') ? 'active' : '' }}"
+            >
+                <i class="bi bi-bar-chart-fill"></i>
+                <span>Laporan</span>
+            </a>
 
         </div>
 
+        <div class="sidebar-footer">
 
-        <!-- =================================================
-             PROFILE
-        ================================================== -->
+            <a
+                href="{{ route('admin.customer-mode.index') }}"
+                class="customer-mode"
+            >
+                <i class="bi bi-person-circle"></i>
+                <span>Lihat Mode Pelanggan</span>
+            </a>
 
-        <div class="profile">
+            <form
+                method="POST"
+                action="{{ route('logout') }}"
+            >
+                @csrf
 
-
-            <!-- PROFILE INFO -->
-
-            <div class="profile-info">
-
-                <h6>
-
-                    {{ auth()->user()->name ?? 'Administrator' }}
-
-                </h6>
-
-                <small>
-
-                    {{ auth()->user()->email ?? '-' }}
-
-                </small>
-
-            </div>
-
-
-            <!-- AVATAR -->
-
-            <div class="avatar">
-
-                {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
-
-            </div>
-
+                <button
+                    type="submit"
+                    class="logout-btn"
+                >
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                </button>
+            </form>
 
         </div>
 
+    </aside>
 
-    </div>
+    <!-- MAIN -->
 
+    <main class="main">
 
-    <!-- =================================================
-         PAGE CONTENT
-    ================================================== -->
+        <!-- TOPBAR -->
 
-    @yield('content')
+        <header class="topbar">
 
+            <div class="breadcrumb-bar">
 
-</div>
+                <div class="breadcrumb-home">
+                    <i class="bi bi-house-fill"></i>
+                </div>
 
+                <i class="bi bi-chevron-right breadcrumb-arrow"></i>
 
-<!-- =====================================================
-     BOOTSTRAP JS
-===================================================== -->
+                <div class="breadcrumb-current">
 
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js">
-</script>
+                    @if(request()->routeIs('dashboard'))
+                        Dashboard
+                    @elseif(request()->routeIs('categories.*'))
+                        Kategori
+                    @elseif(request()->routeIs('products.*'))
+                        Data Barang
+                    @elseif(request()->routeIs('customers.*'))
+                        Data Pelanggan
+                    @elseif(request()->routeIs('rentals.*'))
+                        Transaksi Rental
+                    @elseif(request()->routeIs('payments.*'))
+                        Pembayaran
+                    @elseif(request()->routeIs('reports.*'))
+                        Laporan
+                    @elseif(request()->routeIs('pengembalian.*'))
+                        Pengembalian
+                    @else
+                        Dashboard
+                    @endif
 
+                </div>
+
+            </div>
+
+            <div class="profile">
+
+                <div class="profile-info">
+                    <h6>
+                        {{ auth()->user()->name ?? 'Administrator' }}
+                    </h6>
+
+                    <small>
+                        {{ auth()->user()->email ?? '-' }}
+                    </small>
+                </div>
+
+                <div class="avatar">
+                    {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
+                </div>
+
+            </div>
+
+        </header>
+
+        @yield('content')
+
+    </main>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js">
+    </script>
 
 </body>
-
 </html>
-```
-
-**Yang dihapus:**
-
-* 🔔 Icon notifikasi
-* 🔴 Badge angka `2`
-* CSS `.notification-btn`
-* CSS `.notification-badge`
-* Referensi notifikasi di responsive mobile
-
-Jadi topbar sekarang lebih simpel: **Home → Nama halaman → Nama admin → Avatar**.
