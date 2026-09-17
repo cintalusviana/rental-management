@@ -726,16 +726,16 @@
                 font-size: 14px;
             }
 
-            /* Sidebar disembunyikan terlebih dahulu */
+            /* Sidebar mobile: compact dan tidak memenuhi layar */
             .sidebar {
                 position: fixed;
                 top: 0;
                 left: 0;
-                width: min(300px, 84vw);
+                width: min(290px, 82vw);
                 height: 100vh;
                 min-height: 100vh;
-                padding: 18px;
-                overflow-y: auto;
+                padding: 12px;
+                overflow: hidden;
                 transform: translateX(-105%);
                 box-shadow: 12px 0 35px rgba(15, 23, 42, .22);
                 z-index: 1050;
@@ -746,20 +746,92 @@
             }
 
             .sidebar-menu {
-                overflow: visible;
+                overflow: hidden;
+                flex: 1;
             }
 
             .sidebar-footer {
-                margin-top: 15px;
-            }
-
-            .sidebar-overlay.show {
-                display: block;
+                margin-top: 6px;
+                padding-top: 8px;
             }
 
             /* Tombol garis 3 hanya muncul di HP */
             .mobile-menu-btn {
                 display: flex;
+            }
+
+            /* Semua isi sidebar dipadatkan agar muat dalam 1 layar HP */
+            .logo {
+                gap: 9px;
+                margin-bottom: 10px;
+            }
+
+            .logo-icon {
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
+                border-radius: 11px;
+                font-size: 18px;
+            }
+
+            .logo-text h4 {
+                font-size: 16px;
+            }
+
+            .logo-text small {
+                font-size: 10px;
+            }
+
+            .admin-card {
+                padding: 10px 12px;
+                margin-bottom: 10px;
+                border-radius: 13px;
+            }
+
+            .admin-title {
+                font-size: 10px;
+            }
+
+            .admin-name {
+                font-size: 14px;
+            }
+
+            .admin-role {
+                font-size: 10px;
+            }
+
+            .menu-title {
+                margin-bottom: 5px;
+                font-size: 9px;
+            }
+
+            .menu {
+                gap: 9px;
+                padding: 7px 9px;
+                margin-bottom: 2px;
+                border-radius: 9px;
+                font-size: 12px;
+                min-height: 32px;
+            }
+
+            .menu i {
+                width: 18px;
+                min-width: 18px;
+                font-size: 14px;
+            }
+
+            .customer-mode,
+            .logout-btn {
+                gap: 8px;
+                padding: 7px 9px;
+                margin-top: 3px;
+                border-radius: 9px;
+                font-size: 11px;
+            }
+
+            .customer-mode i,
+            .logout-btn i {
+                font-size: 14px;
             }
 
             .main {
@@ -925,8 +997,47 @@
 
         @media (max-width: 480px) {
             .sidebar {
-                width: min(290px, 86vw);
-                padding: 16px;
+                width: min(285px, 82vw);
+                padding: 11px;
+            }
+
+            .logo {
+                gap: 8px;
+                margin-bottom: 8px;
+            }
+
+            .logo-icon {
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+                font-size: 17px;
+            }
+
+            .logo-text h4 {
+                font-size: 15px;
+            }
+
+            .logo-text small {
+                font-size: 9px;
+            }
+
+            .admin-card {
+                padding: 8px 10px;
+                margin-bottom: 8px;
+            }
+
+            .menu-title {
+                margin-bottom: 4px;
+            }
+
+            .menu {
+                padding: 6px 8px;
+                min-height: 30px;
+                font-size: 11px;
+            }
+
+            .sidebar-footer {
+                padding-top: 6px;
             }
 
             .main {
@@ -1040,7 +1151,33 @@
 
         @media (max-width: 360px) {
             .sidebar {
-                width: 88vw;
+                width: 84vw;
+                padding: 10px;
+            }
+
+            .logo {
+                margin-bottom: 6px;
+            }
+
+            .admin-card {
+                padding: 7px 9px;
+                margin-bottom: 6px;
+            }
+
+            .menu {
+                padding: 5px 7px;
+                min-height: 28px;
+                font-size: 10.5px;
+            }
+
+            .menu i {
+                font-size: 13px;
+            }
+
+            .customer-mode,
+            .logout-btn {
+                padding: 6px 7px;
+                font-size: 10px;
             }
 
             .main {
