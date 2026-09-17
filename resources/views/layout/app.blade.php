@@ -46,6 +46,7 @@
             width: 100%;
             min-height: 100%;
             overflow-x: hidden;
+            overflow-y: auto;
         }
 
         body {
@@ -55,6 +56,7 @@
             background: var(--background);
             color: var(--text);
             overflow-x: hidden;
+            overflow-y: auto;
         }
 
         button,
@@ -72,7 +74,9 @@
             text-decoration: none;
         }
 
-        /* SIDEBAR */
+        /* =========================================================
+           SIDEBAR
+        ========================================================= */
 
         .sidebar {
             position: fixed;
@@ -181,6 +185,7 @@
             overflow-x: hidden;
             overflow-y: auto;
             padding-right: 3px;
+            min-height: 0;
         }
 
         .sidebar-menu::-webkit-scrollbar {
@@ -281,7 +286,9 @@
             font-size: 18px;
         }
 
-        /* MAIN */
+        /* =========================================================
+           MAIN
+        ========================================================= */
 
         .main {
             width: calc(100% - 280px);
@@ -291,7 +298,9 @@
             transition: all .3s ease;
         }
 
-        /* TOPBAR */
+        /* =========================================================
+           TOPBAR
+        ========================================================= */
 
         .topbar {
             min-height: 64px;
@@ -398,7 +407,9 @@
             box-shadow: 0 6px 15px rgba(37, 99, 235, .20);
         }
 
-        /* CONTENT */
+        /* =========================================================
+           CONTENT
+        ========================================================= */
 
         .content-card {
             width: 100%;
@@ -408,7 +419,9 @@
             box-shadow: 0 10px 30px rgba(15, 23, 42, .05);
         }
 
-        /* DASHBOARD */
+        /* =========================================================
+           DASHBOARD
+        ========================================================= */
 
         .dashboard-header {
             display: flex;
@@ -624,14 +637,16 @@
             border-radius: 12px;
         }
 
-        /* BADGE STATUS */
+        /* BADGE */
 
         .badge {
             padding: 8px 14px;
             border-radius: 30px;
         }
 
-        /* MOBILE MENU BUTTON */
+        /* =========================================================
+           MOBILE MENU
+        ========================================================= */
 
         .mobile-menu-btn {
             display: none;
@@ -666,9 +681,12 @@
             display: block;
         }
 
-        /* TABLET BESAR */
+        /* =========================================================
+           TABLET BESAR
+        ========================================================= */
 
         @media (max-width: 1199px) {
+
             .sidebar {
                 width: 260px;
                 padding: 20px;
@@ -695,9 +713,12 @@
             }
         }
 
-        /* TABLET */
+        /* =========================================================
+           TABLET
+        ========================================================= */
 
         @media (max-width: 991px) {
+
             .sidebar {
                 width: 240px;
                 padding: 20px;
@@ -719,14 +740,23 @@
             }
         }
 
-        /* HP / MOBILE */
+        /* =========================================================
+           HP / MOBILE
+        ========================================================= */
 
         @media (max-width: 768px) {
+
             body {
                 font-size: 14px;
+                overflow-y: auto !important;
             }
 
-            /* Sidebar mobile: compact dan tidak memenuhi layar */
+            html {
+                overflow-y: auto !important;
+            }
+
+            /* SIDEBAR */
+
             .sidebar {
                 position: fixed;
                 top: 0;
@@ -748,6 +778,7 @@
             .sidebar-menu {
                 overflow: hidden;
                 flex: 1;
+                min-height: 0;
             }
 
             .sidebar-footer {
@@ -755,12 +786,14 @@
                 padding-top: 8px;
             }
 
-            /* Tombol garis 3 hanya muncul di HP */
+            /* HAMBURGER */
+
             .mobile-menu-btn {
                 display: flex;
             }
 
-            /* Semua isi sidebar dipadatkan agar muat dalam 1 layar HP */
+            /* LOGO */
+
             .logo {
                 gap: 9px;
                 margin-bottom: 10px;
@@ -782,6 +815,8 @@
                 font-size: 10px;
             }
 
+            /* ADMIN CARD */
+
             .admin-card {
                 padding: 10px 12px;
                 margin-bottom: 10px;
@@ -799,6 +834,8 @@
             .admin-role {
                 font-size: 10px;
             }
+
+            /* MENU */
 
             .menu-title {
                 margin-bottom: 5px;
@@ -834,11 +871,16 @@
                 font-size: 14px;
             }
 
+            /* MAIN */
+
             .main {
                 width: 100%;
                 margin-left: 0;
                 padding: 12px;
+                min-height: 100vh;
             }
+
+            /* TOPBAR */
 
             .topbar {
                 width: 100%;
@@ -888,6 +930,8 @@
                 font-size: 14px;
             }
 
+            /* CONTENT */
+
             .content-card {
                 padding: 17px;
                 border-radius: 16px;
@@ -930,6 +974,8 @@
                 font-size: 12px;
             }
 
+            /* SUMMARY */
+
             .summary-card {
                 min-height: 130px;
                 padding: 15px;
@@ -956,6 +1002,8 @@
                 font-size: 11px;
             }
 
+            /* DASHBOARD CARD */
+
             .dashboard-card {
                 padding: 18px;
                 border-radius: 17px;
@@ -965,9 +1013,12 @@
                 font-size: 17px;
             }
 
+            /* TABLE */
+
             .table-responsive {
                 width: 100%;
                 overflow-x: auto;
+                overflow-y: visible;
                 -webkit-overflow-scrolling: touch;
             }
 
@@ -993,9 +1044,12 @@
             }
         }
 
-        /* HP KECIL */
+        /* =========================================================
+           HP KECIL
+        ========================================================= */
 
         @media (max-width: 480px) {
+
             .sidebar {
                 width: min(285px, 82vw);
                 padding: 11px;
@@ -1147,9 +1201,12 @@
             }
         }
 
-        /* HP SANGAT KECIL */
+        /* =========================================================
+           HP SANGAT KECIL
+        ========================================================= */
 
         @media (max-width: 360px) {
+
             .sidebar {
                 width: 84vw;
                 padding: 10px;
@@ -1211,6 +1268,10 @@
             }
         }
 
+        /* =========================================================
+           BOOTSTRAP FIX
+        ========================================================= */
+
         .container,
         .container-fluid {
             max-width: 100%;
@@ -1232,6 +1293,7 @@
     <aside class="sidebar" id="sidebar">
 
         <div class="logo">
+
             <div class="logo-icon">
                 <i class="bi bi-box-seam"></i>
             </div>
@@ -1240,10 +1302,14 @@
                 <h4>Rental</h4>
                 <small>Management System</small>
             </div>
+
         </div>
 
         <div class="admin-card">
-            <div class="admin-title">MODE ADMIN</div>
+
+            <div class="admin-title">
+                MODE ADMIN
+            </div>
 
             <div class="admin-name">
                 {{ auth()->user()->name ?? 'Administrator' }}
@@ -1252,6 +1318,7 @@
             <div class="admin-role">
                 Administrator
             </div>
+
         </div>
 
         <div class="menu-title">
@@ -1332,6 +1399,7 @@
                 method="POST"
                 action="{{ route('logout') }}"
             >
+
                 @csrf
 
                 <button
@@ -1341,6 +1409,7 @@
                     <i class="bi bi-box-arrow-right"></i>
                     <span>Logout</span>
                 </button>
+
             </form>
 
         </div>
@@ -1355,7 +1424,12 @@
 
         <header class="topbar">
 
-            <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Buka menu">
+            <button
+                type="button"
+                class="mobile-menu-btn"
+                id="mobileMenuBtn"
+                aria-label="Buka menu"
+            >
                 <i class="bi bi-list"></i>
             </button>
 
@@ -1370,23 +1444,41 @@
                 <div class="breadcrumb-current">
 
                     @if(request()->routeIs('dashboard'))
+
                         Dashboard
+
                     @elseif(request()->routeIs('categories.*'))
+
                         Kategori
+
                     @elseif(request()->routeIs('products.*'))
+
                         Data Barang
+
                     @elseif(request()->routeIs('customers.*'))
+
                         Data Pelanggan
+
                     @elseif(request()->routeIs('rentals.*'))
+
                         Transaksi Rental
+
                     @elseif(request()->routeIs('payments.*'))
+
                         Pembayaran
+
                     @elseif(request()->routeIs('reports.*'))
+
                         Laporan
+
                     @elseif(request()->routeIs('pengembalian.*'))
+
                         Pengembalian
+
                     @else
+
                         Dashboard
+
                     @endif
 
                 </div>
@@ -1396,6 +1488,7 @@
             <div class="profile">
 
                 <div class="profile-info">
+
                     <h6>
                         {{ auth()->user()->name ?? 'Administrator' }}
                     </h6>
@@ -1403,6 +1496,7 @@
                     <small>
                         {{ auth()->user()->email ?? '-' }}
                     </small>
+
                 </div>
 
                 <div class="avatar">
@@ -1417,59 +1511,101 @@
 
     </main>
 
+    <!-- SIDEBAR SCRIPT -->
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+
             const menuButton = document.getElementById('mobileMenuBtn');
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebarOverlay');
 
-            if (!menuButton || !sidebar || !overlay) return;
+            if (!menuButton || !sidebar || !overlay) {
+                return;
+            }
 
             function openSidebar() {
+
                 sidebar.classList.add('open');
                 overlay.classList.add('show');
-                menuButton.setAttribute('aria-label', 'Tutup menu');
-                menuButton.innerHTML = '<i class="bi bi-x-lg"></i>';
-                document.body.style.overflow = 'hidden';
+
+                menuButton.setAttribute(
+                    'aria-label',
+                    'Tutup menu'
+                );
+
+                menuButton.innerHTML =
+                    '<i class="bi bi-x-lg"></i>';
             }
 
             function closeSidebar() {
+
                 sidebar.classList.remove('open');
                 overlay.classList.remove('show');
-                menuButton.setAttribute('aria-label', 'Buka menu');
-                menuButton.innerHTML = '<i class="bi bi-list"></i>';
-                document.body.style.overflow = '';
+
+                menuButton.setAttribute(
+                    'aria-label',
+                    'Buka menu'
+                );
+
+                menuButton.innerHTML =
+                    '<i class="bi bi-list"></i>';
             }
 
             menuButton.addEventListener('click', function () {
+
                 if (sidebar.classList.contains('open')) {
+
                     closeSidebar();
+
                 } else {
+
                     openSidebar();
+
                 }
+
             });
 
-            overlay.addEventListener('click', closeSidebar);
+            overlay.addEventListener(
+                'click',
+                closeSidebar
+            );
 
-            sidebar.querySelectorAll('a').forEach(function (link) {
-                link.addEventListener('click', function () {
-                    if (window.innerWidth <= 768) {
+            sidebar
+                .querySelectorAll('a')
+                .forEach(function (link) {
+
+                    link.addEventListener(
+                        'click',
+                        function () {
+
+                            if (window.innerWidth <= 768) {
+                                closeSidebar();
+                            }
+
+                        }
+                    );
+
+                });
+
+            window.addEventListener(
+                'resize',
+                function () {
+
+                    if (window.innerWidth > 768) {
                         closeSidebar();
                     }
-                });
-            });
 
-            window.addEventListener('resize', function () {
-                if (window.innerWidth > 768) {
-                    closeSidebar();
                 }
-            });
+            );
+
         });
     </script>
 
     <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js">
-    </script>
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    ></script>
 
 </body>
+
 </html>
