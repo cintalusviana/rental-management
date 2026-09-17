@@ -631,115 +631,254 @@
             border-radius: 30px;
         }
 
-        /* TABLET BESAR */
+        /* =========================================================
+           RESPONSIVE TABLET
+        ========================================================= */
 
-        @media (max-width: 1199px) {
+        @media (max-width: 991px) {
+
             .sidebar {
-                width: 260px;
-                padding: 20px;
+                width: 230px;
+                padding: 18px;
             }
 
             .main {
-                width: calc(100% - 260px);
-                margin-left: 260px;
-                padding: 20px;
+                width: calc(100% - 230px);
+                margin-left: 230px;
+                padding: 18px;
+            }
+
+            .logo {
+                gap: 10px;
+                margin-bottom: 22px;
+            }
+
+            .logo-icon {
+                width: 44px;
+                height: 44px;
+                min-width: 44px;
+                font-size: 20px;
+            }
+
+            .logo-text h4 {
+                font-size: 17px;
+            }
+
+            .logo-text small {
+                font-size: 11px;
+            }
+
+            .admin-card {
+                padding: 15px;
+                margin-bottom: 20px;
             }
 
             .menu {
-                padding: 12px 14px;
-                font-size: 14px;
+                padding: 11px 12px;
+                gap: 11px;
+                font-size: 13px;
             }
 
             .menu i {
-                font-size: 17px;
+                width: 20px;
+                min-width: 20px;
+                font-size: 16px;
+            }
+
+            .content-card {
+                padding: 20px;
+            }
+
+            .topbar {
+                padding: 9px 14px;
             }
 
             .profile-info h6,
             .profile-info small {
-                max-width: 150px;
+                max-width: 130px;
+            }
+
+            .summary-card {
+                padding: 14px;
+            }
+
+            .summary-icon {
+                width: 52px;
+                height: 52px;
+                min-width: 52px;
+                font-size: 22px;
             }
         }
 
-        /* TABLET */
 
-        @media (max-width: 991px) {
-            .sidebar {
-                width: 240px;
-                padding: 20px;
-                box-shadow: 12px 0 35px rgba(15, 23, 42, .10);
+        /* =========================================================
+           RESPONSIVE HP / MOBILE
+        ========================================================= */
+
+        @media (max-width: 767px) {
+
+            html,
+            body {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
             }
 
-            .main {
-                width: calc(100% - 240px);
-                margin-left: 240px;
-                padding: 20px;
-            }
-
-            .content-card {
-                padding: 22px;
-            }
-
-            .topbar {
-                margin-bottom: 18px;
-            }
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 768px) {
             body {
                 font-size: 14px;
             }
 
             .sidebar {
                 position: relative;
+                top: auto;
+                left: auto;
                 width: 100%;
                 height: auto;
                 min-height: auto;
-                padding: 18px;
-            }
-
-            .sidebar-menu {
+                padding: 15px;
+                border-radius: 0;
                 overflow: visible;
             }
 
+            .logo {
+                margin-bottom: 18px;
+            }
+
+            .logo-icon {
+                width: 42px;
+                height: 42px;
+                min-width: 42px;
+                border-radius: 12px;
+                font-size: 19px;
+            }
+
+            .logo-text h4 {
+                font-size: 16px;
+            }
+
+            .logo-text small {
+                font-size: 10px;
+            }
+
+            .admin-card {
+                padding: 13px;
+                margin-bottom: 17px;
+                border-radius: 14px;
+            }
+
+            .admin-title {
+                font-size: 11px;
+            }
+
+            .admin-name {
+                font-size: 14px;
+            }
+
+            .admin-role {
+                font-size: 11px;
+            }
+
+            .menu-title {
+                margin-bottom: 9px;
+                font-size: 9px;
+            }
+
+            .sidebar-menu {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 7px;
+                overflow: visible;
+            }
+
+            .menu {
+                width: 100%;
+                min-width: 0;
+                margin-bottom: 0;
+                padding: 10px 9px;
+                gap: 8px;
+                border-radius: 11px;
+                font-size: 12px;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+
+            .menu span {
+                min-width: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .menu i {
+                width: 18px;
+                min-width: 18px;
+                font-size: 15px;
+            }
+
+            .menu:hover {
+                transform: none;
+            }
+
             .sidebar-footer {
-                margin-top: 15px;
+                margin-top: 14px;
+                padding-top: 12px;
+            }
+
+            .customer-mode,
+            .logout-btn {
+                padding: 10px 11px;
+                border-radius: 11px;
+                font-size: 12px;
+            }
+
+            .customer-mode i,
+            .logout-btn i {
+                font-size: 16px;
             }
 
             .main {
                 width: 100%;
                 margin-left: 0;
-                padding: 14px;
+                padding: 10px;
             }
 
             .topbar {
                 width: 100%;
-                min-height: 64px;
-                padding: 10px 12px;
-                margin-bottom: 15px;
-                border-radius: 15px;
-                gap: 10px;
+                min-height: 56px;
+                padding: 8px 10px;
+                margin-bottom: 12px;
+                border-radius: 13px;
+                gap: 8px;
             }
 
             .breadcrumb-bar {
-                gap: 8px;
+                min-width: 0;
+                gap: 6px;
             }
 
             .breadcrumb-home {
-                width: 42px;
-                height: 42px;
-                min-width: 42px;
-                border-radius: 11px;
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
+                border-radius: 10px;
+                font-size: 15px;
+            }
+
+            .breadcrumb-arrow {
+                font-size: 11px;
             }
 
             .breadcrumb-current {
-                max-width: 160px;
-                font-size: 14px;
+                min-width: 0;
+                max-width: 130px;
+                font-size: 12px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             .profile {
-                gap: 8px;
+                gap: 6px;
             }
 
             .profile-info {
@@ -747,176 +886,247 @@
             }
 
             .avatar {
-                width: 42px;
-                height: 42px;
-                min-width: 42px;
-                border-radius: 11px;
-                font-size: 14px;
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
+                border-radius: 10px;
+                font-size: 13px;
             }
 
             .content-card {
-                padding: 18px;
-                border-radius: 16px;
+                width: 100%;
+                padding: 14px;
+                border-radius: 14px;
             }
 
             .dashboard-header {
+                width: 100%;
                 align-items: flex-start;
-                gap: 15px;
-                margin-bottom: 20px;
+                gap: 13px;
+                margin-bottom: 17px;
             }
 
             .dashboard-left {
                 width: 100%;
+                min-width: 0;
             }
 
             .dashboard-left h1 {
-                font-size: 23px;
-                line-height: 1.25;
+                font-size: 21px;
+                line-height: 1.3;
+                word-break: break-word;
             }
 
             .dashboard-left p {
-                font-size: 13px;
+                font-size: 12px;
                 line-height: 1.5;
             }
 
             .breadcrumb-dashboard {
-                margin-bottom: 8px;
-                font-size: 12px;
+                margin-bottom: 7px;
+                font-size: 11px;
             }
 
             .dashboard-right {
                 width: 100%;
-                gap: 8px;
+                display: flex;
+                gap: 7px;
             }
 
             .dashboard-right .btn-month,
             .dashboard-right .btn-download {
                 flex: 1;
-                padding: 10px 12px;
-                font-size: 12px;
+                min-width: 0;
+                padding: 9px 10px;
+                font-size: 11px;
+                border-radius: 10px;
+                white-space: nowrap;
             }
 
             .summary-card {
-                min-height: 130px;
-                padding: 15px;
-                border-radius: 15px;
+                min-height: 115px;
+                padding: 12px;
+                border-radius: 13px;
             }
 
-            .summary-icon {
-                width: 50px;
-                height: 50px;
-                min-width: 50px;
-                border-radius: 14px;
-                font-size: 22px;
+            .summary-top {
+                gap: 7px;
             }
 
             .summary-title {
-                font-size: 11px;
+                font-size: 9px;
+                line-height: 1.3;
             }
 
             .summary-card h2 {
-                font-size: 22px;
+                font-size: 19px;
+                line-height: 1.2;
+                word-break: break-word;
             }
 
             .summary-card p {
-                font-size: 11px;
+                font-size: 9px;
+                line-height: 1.35;
+            }
+
+            .summary-icon {
+                width: 42px;
+                height: 42px;
+                min-width: 42px;
+                border-radius: 11px;
+                font-size: 18px;
+            }
+
+            .summary-footer {
+                padding-top: 10px;
+                margin-top: 12px;
+                font-size: 10px;
             }
 
             .dashboard-card {
-                padding: 18px;
-                border-radius: 17px;
+                width: 100%;
+                padding: 15px;
+                border-radius: 15px;
+                overflow: hidden;
             }
 
             .dashboard-card-title {
-                font-size: 17px;
+                font-size: 16px;
+                line-height: 1.3;
             }
 
             .table-responsive {
                 width: 100%;
+                max-width: 100%;
                 overflow-x: auto;
+                overflow-y: hidden;
                 -webkit-overflow-scrolling: touch;
+                border-radius: 10px;
             }
 
             .table {
-                min-width: 650px;
+                min-width: 620px;
+                margin-bottom: 0;
             }
 
             .table thead th {
-                padding: 13px 12px;
-                font-size: 11px;
+                padding: 11px 10px;
+                font-size: 10px;
                 white-space: nowrap;
             }
 
             .table tbody td {
-                padding: 14px 12px;
-                font-size: 12px;
+                padding: 12px 10px;
+                font-size: 11px;
                 white-space: nowrap;
             }
 
             .badge {
-                padding: 6px 10px;
-                font-size: 11px;
+                padding: 5px 8px;
+                font-size: 10px;
+                white-space: nowrap;
+            }
+
+            .row {
+                --bs-gutter-x: .75rem;
+                --bs-gutter-y: .75rem;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
             }
         }
 
-        /* HP KECIL */
+
+        /* =========================================================
+           HP KECIL
+        ========================================================= */
 
         @media (max-width: 480px) {
+
             .sidebar {
-                padding: 16px;
+                padding: 12px;
             }
 
-            .main {
-                padding: 10px;
+            .logo {
+                gap: 9px;
+                margin-bottom: 15px;
             }
 
-            .topbar {
-                min-height: 60px;
-                padding: 9px 10px;
-                margin-bottom: 12px;
-                border-radius: 14px;
-            }
-
-            .breadcrumb-bar {
-                gap: 6px;
-            }
-
-            .breadcrumb-home {
-                width: 40px;
-                height: 40px;
-                min-width: 40px;
-            }
-
-            .breadcrumb-current {
-                max-width: 110px;
-                font-size: 13px;
-            }
-
-            .profile {
-                gap: 6px;
-            }
-
-            .avatar {
+            .logo-icon {
                 width: 40px;
                 height: 40px;
                 min-width: 40px;
                 border-radius: 11px;
             }
 
+            .logo-text h4 {
+                font-size: 15px;
+            }
+
+            .logo-text small {
+                font-size: 9px;
+            }
+
+            .admin-card {
+                padding: 11px;
+                border-radius: 12px;
+            }
+
+            .sidebar-menu {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 6px;
+            }
+
+            .menu {
+                padding: 9px 8px;
+                gap: 7px;
+                font-size: 11px;
+            }
+
+            .menu i {
+                width: 17px;
+                min-width: 17px;
+                font-size: 14px;
+            }
+
+            .main {
+                padding: 8px;
+            }
+
+            .topbar {
+                padding: 8px;
+                border-radius: 12px;
+            }
+
+            .breadcrumb-home {
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+            }
+
+            .breadcrumb-current {
+                max-width: 105px;
+                font-size: 11px;
+            }
+
+            .avatar {
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+            }
+
             .content-card {
-                padding: 15px;
-                border-radius: 14px;
+                padding: 12px;
+                border-radius: 13px;
             }
 
             .dashboard-left h1 {
-                font-size: 21px;
+                font-size: 19px;
             }
 
             .dashboard-left p {
-                font-size: 12px;
-            }
-
-            .breadcrumb-dashboard {
                 font-size: 11px;
             }
 
@@ -927,71 +1137,109 @@
             .dashboard-right .btn-month,
             .dashboard-right .btn-download {
                 width: 100%;
-                min-height: 42px;
+                min-height: 40px;
                 flex: none;
-                font-size: 12px;
+                font-size: 11px;
             }
 
             .summary-card {
-                min-height: 120px;
-                padding: 13px;
+                min-height: 108px;
+                padding: 10px;
             }
 
             .summary-icon {
-                width: 45px;
-                height: 45px;
-                min-width: 45px;
-                border-radius: 13px;
-                font-size: 20px;
-            }
-
-            .summary-title {
-                font-size: 10px;
-            }
-
-            .summary-card h2 {
-                font-size: 20px;
-            }
-
-            .summary-card p {
-                font-size: 10px;
-            }
-
-            .dashboard-card {
-                padding: 15px;
-                border-radius: 15px;
-            }
-
-            .dashboard-card-title {
-                font-size: 16px;
-            }
-        }
-
-        /* HP SANGAT KECIL */
-
-        @media (max-width: 360px) {
-            .main {
-                padding: 8px;
-            }
-
-            .topbar {
-                padding: 8px;
-                gap: 5px;
-            }
-
-            .breadcrumb-current {
-                max-width: 85px;
-                font-size: 12px;
-            }
-
-            .avatar {
                 width: 38px;
                 height: 38px;
                 min-width: 38px;
+                font-size: 16px;
+            }
+
+            .summary-title {
+                font-size: 8px;
+            }
+
+            .summary-card h2 {
+                font-size: 17px;
+            }
+
+            .summary-card p {
+                font-size: 8px;
+            }
+
+            .dashboard-card {
+                padding: 13px;
+                border-radius: 13px;
+            }
+
+            .dashboard-card-title {
+                font-size: 15px;
+            }
+        }
+
+
+        /* =========================================================
+           HP SANGAT KECIL
+        ========================================================= */
+
+        @media (max-width: 360px) {
+
+            .sidebar {
+                padding: 10px;
+            }
+
+            .menu {
+                padding: 8px 6px;
+                font-size: 10px;
+            }
+
+            .menu i {
+                width: 16px;
+                min-width: 16px;
+                font-size: 13px;
+            }
+
+            .main {
+                padding: 6px;
+            }
+
+            .topbar {
+                padding: 7px;
+                gap: 4px;
+            }
+
+            .breadcrumb-current {
+                max-width: 80px;
+                font-size: 10px;
+            }
+
+            .avatar {
+                width: 34px;
+                height: 34px;
+                min-width: 34px;
+                font-size: 12px;
             }
 
             .content-card {
-                padding: 13px;
+                padding: 10px;
+            }
+
+            .dashboard-left h1 {
+                font-size: 18px;
+            }
+
+            .summary-card {
+                padding: 9px;
+            }
+
+            .summary-icon {
+                width: 34px;
+                height: 34px;
+                min-width: 34px;
+                font-size: 14px;
+            }
+
+            .summary-card h2 {
+                font-size: 16px;
             }
         }
 
