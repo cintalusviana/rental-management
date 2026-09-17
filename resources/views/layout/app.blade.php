@@ -631,254 +631,177 @@
             border-radius: 30px;
         }
 
-        /* =========================================================
-           RESPONSIVE TABLET
-        ========================================================= */
+        /* MOBILE MENU BUTTON */
 
-        @media (max-width: 991px) {
+        .mobile-menu-btn {
+            display: none;
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            border: 0;
+            border-radius: 12px;
+            background: #eff6ff;
+            color: #2563eb;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: .2s ease;
+        }
 
+        .mobile-menu-btn:hover {
+            background: #dbeafe;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, .55);
+            backdrop-filter: blur(2px);
+            z-index: 1040;
+        }
+
+        .sidebar-overlay.show {
+            display: block;
+        }
+
+        /* TABLET BESAR */
+
+        @media (max-width: 1199px) {
             .sidebar {
-                width: 230px;
-                padding: 18px;
-            }
-
-            .main {
-                width: calc(100% - 230px);
-                margin-left: 230px;
-                padding: 18px;
-            }
-
-            .logo {
-                gap: 10px;
-                margin-bottom: 22px;
-            }
-
-            .logo-icon {
-                width: 44px;
-                height: 44px;
-                min-width: 44px;
-                font-size: 20px;
-            }
-
-            .logo-text h4 {
-                font-size: 17px;
-            }
-
-            .logo-text small {
-                font-size: 11px;
-            }
-
-            .admin-card {
-                padding: 15px;
-                margin-bottom: 20px;
-            }
-
-            .menu {
-                padding: 11px 12px;
-                gap: 11px;
-                font-size: 13px;
-            }
-
-            .menu i {
-                width: 20px;
-                min-width: 20px;
-                font-size: 16px;
-            }
-
-            .content-card {
+                width: 260px;
                 padding: 20px;
             }
 
-            .topbar {
-                padding: 9px 14px;
+            .main {
+                width: calc(100% - 260px);
+                margin-left: 260px;
+                padding: 20px;
+            }
+
+            .menu {
+                padding: 12px 14px;
+                font-size: 14px;
+            }
+
+            .menu i {
+                font-size: 17px;
             }
 
             .profile-info h6,
             .profile-info small {
-                max-width: 130px;
-            }
-
-            .summary-card {
-                padding: 14px;
-            }
-
-            .summary-icon {
-                width: 52px;
-                height: 52px;
-                min-width: 52px;
-                font-size: 22px;
+                max-width: 150px;
             }
         }
 
+        /* TABLET */
 
-        /* =========================================================
-           RESPONSIVE HP / MOBILE
-        ========================================================= */
-
-        @media (max-width: 767px) {
-
-            html,
-            body {
-                width: 100%;
-                max-width: 100%;
-                overflow-x: hidden;
-            }
-
-            body {
-                font-size: 14px;
-            }
-
+        @media (max-width: 991px) {
             .sidebar {
-                position: relative;
-                top: auto;
-                left: auto;
-                width: 100%;
-                height: auto;
-                min-height: auto;
-                padding: 15px;
-                border-radius: 0;
-                overflow: visible;
+                width: 240px;
+                padding: 20px;
+                box-shadow: 12px 0 35px rgba(15, 23, 42, .10);
             }
 
-            .logo {
+            .main {
+                width: calc(100% - 240px);
+                margin-left: 240px;
+                padding: 18px;
+            }
+
+            .content-card {
+                padding: 22px;
+            }
+
+            .topbar {
                 margin-bottom: 18px;
             }
+        }
 
-            .logo-icon {
-                width: 42px;
-                height: 42px;
-                min-width: 42px;
-                border-radius: 12px;
-                font-size: 19px;
-            }
+        /* HP / MOBILE */
 
-            .logo-text h4 {
-                font-size: 16px;
-            }
-
-            .logo-text small {
-                font-size: 10px;
-            }
-
-            .admin-card {
-                padding: 13px;
-                margin-bottom: 17px;
-                border-radius: 14px;
-            }
-
-            .admin-title {
-                font-size: 11px;
-            }
-
-            .admin-name {
+        @media (max-width: 768px) {
+            body {
                 font-size: 14px;
             }
 
-            .admin-role {
-                font-size: 11px;
+            /* Sidebar disembunyikan terlebih dahulu */
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: min(300px, 84vw);
+                height: 100vh;
+                min-height: 100vh;
+                padding: 18px;
+                overflow-y: auto;
+                transform: translateX(-105%);
+                box-shadow: 12px 0 35px rgba(15, 23, 42, .22);
+                z-index: 1050;
             }
 
-            .menu-title {
-                margin-bottom: 9px;
-                font-size: 9px;
+            .sidebar.open {
+                transform: translateX(0);
             }
 
             .sidebar-menu {
-                width: 100%;
-                display: grid;
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 7px;
                 overflow: visible;
             }
 
-            .menu {
-                width: 100%;
-                min-width: 0;
-                margin-bottom: 0;
-                padding: 10px 9px;
-                gap: 8px;
-                border-radius: 11px;
-                font-size: 12px;
-                white-space: nowrap;
-                overflow: hidden;
-            }
-
-            .menu span {
-                min-width: 0;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-
-            .menu i {
-                width: 18px;
-                min-width: 18px;
-                font-size: 15px;
-            }
-
-            .menu:hover {
-                transform: none;
-            }
-
             .sidebar-footer {
-                margin-top: 14px;
-                padding-top: 12px;
+                margin-top: 15px;
             }
 
-            .customer-mode,
-            .logout-btn {
-                padding: 10px 11px;
-                border-radius: 11px;
-                font-size: 12px;
+            .sidebar-overlay.show {
+                display: block;
             }
 
-            .customer-mode i,
-            .logout-btn i {
-                font-size: 16px;
+            /* Tombol garis 3 hanya muncul di HP */
+            .mobile-menu-btn {
+                display: flex;
             }
 
             .main {
                 width: 100%;
                 margin-left: 0;
-                padding: 10px;
+                padding: 12px;
             }
 
             .topbar {
                 width: 100%;
-                min-height: 56px;
-                padding: 8px 10px;
-                margin-bottom: 12px;
-                border-radius: 13px;
-                gap: 8px;
+                min-height: 60px;
+                padding: 9px 10px;
+                margin-bottom: 14px;
+                border-radius: 15px;
+                gap: 9px;
+                position: relative;
+                z-index: 1000;
             }
 
             .breadcrumb-bar {
+                gap: 7px;
                 min-width: 0;
-                gap: 6px;
             }
 
             .breadcrumb-home {
-                width: 38px;
-                height: 38px;
-                min-width: 38px;
-                border-radius: 10px;
-                font-size: 15px;
-            }
-
-            .breadcrumb-arrow {
-                font-size: 11px;
+                width: 40px;
+                height: 40px;
+                min-width: 40px;
+                border-radius: 11px;
             }
 
             .breadcrumb-current {
-                min-width: 0;
-                max-width: 130px;
-                font-size: 12px;
+                max-width: 160px;
+                font-size: 14px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
 
             .profile {
-                gap: 6px;
+                gap: 7px;
+                margin-left: auto;
             }
 
             .profile-info {
@@ -886,247 +809,183 @@
             }
 
             .avatar {
-                width: 38px;
-                height: 38px;
-                min-width: 38px;
-                border-radius: 10px;
-                font-size: 13px;
+                width: 40px;
+                height: 40px;
+                min-width: 40px;
+                border-radius: 11px;
+                font-size: 14px;
             }
 
             .content-card {
-                width: 100%;
-                padding: 14px;
-                border-radius: 14px;
+                padding: 17px;
+                border-radius: 16px;
             }
 
             .dashboard-header {
-                width: 100%;
                 align-items: flex-start;
-                gap: 13px;
-                margin-bottom: 17px;
+                gap: 15px;
+                margin-bottom: 20px;
             }
 
             .dashboard-left {
                 width: 100%;
-                min-width: 0;
             }
 
             .dashboard-left h1 {
-                font-size: 21px;
-                line-height: 1.3;
-                word-break: break-word;
+                font-size: 23px;
+                line-height: 1.25;
             }
 
             .dashboard-left p {
-                font-size: 12px;
+                font-size: 13px;
                 line-height: 1.5;
             }
 
             .breadcrumb-dashboard {
-                margin-bottom: 7px;
-                font-size: 11px;
+                margin-bottom: 8px;
+                font-size: 12px;
             }
 
             .dashboard-right {
                 width: 100%;
-                display: flex;
-                gap: 7px;
+                gap: 8px;
             }
 
             .dashboard-right .btn-month,
             .dashboard-right .btn-download {
                 flex: 1;
-                min-width: 0;
-                padding: 9px 10px;
-                font-size: 11px;
-                border-radius: 10px;
-                white-space: nowrap;
+                padding: 10px 12px;
+                font-size: 12px;
             }
 
             .summary-card {
-                min-height: 115px;
-                padding: 12px;
-                border-radius: 13px;
-            }
-
-            .summary-top {
-                gap: 7px;
-            }
-
-            .summary-title {
-                font-size: 9px;
-                line-height: 1.3;
-            }
-
-            .summary-card h2 {
-                font-size: 19px;
-                line-height: 1.2;
-                word-break: break-word;
-            }
-
-            .summary-card p {
-                font-size: 9px;
-                line-height: 1.35;
+                min-height: 130px;
+                padding: 15px;
+                border-radius: 15px;
             }
 
             .summary-icon {
-                width: 42px;
-                height: 42px;
-                min-width: 42px;
-                border-radius: 11px;
-                font-size: 18px;
+                width: 50px;
+                height: 50px;
+                min-width: 50px;
+                border-radius: 14px;
+                font-size: 22px;
             }
 
-            .summary-footer {
-                padding-top: 10px;
-                margin-top: 12px;
-                font-size: 10px;
+            .summary-title {
+                font-size: 11px;
+            }
+
+            .summary-card h2 {
+                font-size: 22px;
+            }
+
+            .summary-card p {
+                font-size: 11px;
             }
 
             .dashboard-card {
-                width: 100%;
-                padding: 15px;
-                border-radius: 15px;
-                overflow: hidden;
+                padding: 18px;
+                border-radius: 17px;
             }
 
             .dashboard-card-title {
-                font-size: 16px;
-                line-height: 1.3;
+                font-size: 17px;
             }
 
             .table-responsive {
                 width: 100%;
-                max-width: 100%;
                 overflow-x: auto;
-                overflow-y: hidden;
                 -webkit-overflow-scrolling: touch;
-                border-radius: 10px;
             }
 
             .table {
                 min-width: 620px;
-                margin-bottom: 0;
             }
 
             .table thead th {
-                padding: 11px 10px;
-                font-size: 10px;
+                padding: 13px 12px;
+                font-size: 11px;
                 white-space: nowrap;
             }
 
             .table tbody td {
-                padding: 12px 10px;
-                font-size: 11px;
+                padding: 14px 12px;
+                font-size: 12px;
                 white-space: nowrap;
             }
 
             .badge {
-                padding: 5px 8px;
-                font-size: 10px;
-                white-space: nowrap;
-            }
-
-            .row {
-                --bs-gutter-x: .75rem;
-                --bs-gutter-y: .75rem;
-            }
-
-            img {
-                max-width: 100%;
-                height: auto;
+                padding: 6px 10px;
+                font-size: 11px;
             }
         }
 
-
-        /* =========================================================
-           HP KECIL
-        ========================================================= */
+        /* HP KECIL */
 
         @media (max-width: 480px) {
-
             .sidebar {
-                padding: 12px;
+                width: min(290px, 86vw);
+                padding: 16px;
             }
 
-            .logo {
-                gap: 9px;
-                margin-bottom: 15px;
+            .main {
+                padding: 9px;
             }
 
-            .logo-icon {
+            .topbar {
+                min-height: 56px;
+                padding: 8px;
+                margin-bottom: 11px;
+                border-radius: 14px;
+                gap: 7px;
+            }
+
+            .mobile-menu-btn {
                 width: 40px;
                 height: 40px;
                 min-width: 40px;
                 border-radius: 11px;
+                font-size: 23px;
             }
 
-            .logo-text h4 {
-                font-size: 15px;
-            }
-
-            .logo-text small {
-                font-size: 9px;
-            }
-
-            .admin-card {
-                padding: 11px;
-                border-radius: 12px;
-            }
-
-            .sidebar-menu {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 6px;
-            }
-
-            .menu {
-                padding: 9px 8px;
-                gap: 7px;
-                font-size: 11px;
-            }
-
-            .menu i {
-                width: 17px;
-                min-width: 17px;
-                font-size: 14px;
-            }
-
-            .main {
-                padding: 8px;
-            }
-
-            .topbar {
-                padding: 8px;
-                border-radius: 12px;
+            .breadcrumb-bar {
+                gap: 5px;
             }
 
             .breadcrumb-home {
-                width: 36px;
-                height: 36px;
-                min-width: 36px;
+                display: none;
+            }
+
+            .breadcrumb-arrow {
+                display: none;
             }
 
             .breadcrumb-current {
-                max-width: 105px;
-                font-size: 11px;
+                max-width: 120px;
+                font-size: 13px;
             }
 
             .avatar {
-                width: 36px;
-                height: 36px;
-                min-width: 36px;
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
             }
 
             .content-card {
-                padding: 12px;
-                border-radius: 13px;
+                padding: 14px;
+                border-radius: 14px;
             }
 
             .dashboard-left h1 {
-                font-size: 19px;
+                font-size: 21px;
             }
 
             .dashboard-left p {
+                font-size: 12px;
+            }
+
+            .breadcrumb-dashboard {
                 font-size: 11px;
             }
 
@@ -1137,109 +996,81 @@
             .dashboard-right .btn-month,
             .dashboard-right .btn-download {
                 width: 100%;
-                min-height: 40px;
+                min-height: 42px;
                 flex: none;
-                font-size: 11px;
+                font-size: 12px;
             }
 
             .summary-card {
-                min-height: 108px;
-                padding: 10px;
+                min-height: 120px;
+                padding: 13px;
             }
 
             .summary-icon {
-                width: 38px;
-                height: 38px;
-                min-width: 38px;
-                font-size: 16px;
+                width: 45px;
+                height: 45px;
+                min-width: 45px;
+                border-radius: 13px;
+                font-size: 20px;
             }
 
             .summary-title {
-                font-size: 8px;
-            }
-
-            .summary-card h2 {
-                font-size: 17px;
-            }
-
-            .summary-card p {
-                font-size: 8px;
-            }
-
-            .dashboard-card {
-                padding: 13px;
-                border-radius: 13px;
-            }
-
-            .dashboard-card-title {
-                font-size: 15px;
-            }
-        }
-
-
-        /* =========================================================
-           HP SANGAT KECIL
-        ========================================================= */
-
-        @media (max-width: 360px) {
-
-            .sidebar {
-                padding: 10px;
-            }
-
-            .menu {
-                padding: 8px 6px;
                 font-size: 10px;
             }
 
-            .menu i {
-                width: 16px;
-                min-width: 16px;
-                font-size: 13px;
+            .summary-card h2 {
+                font-size: 20px;
+            }
+
+            .summary-card p {
+                font-size: 10px;
+            }
+
+            .dashboard-card {
+                padding: 15px;
+                border-radius: 15px;
+            }
+
+            .dashboard-card-title {
+                font-size: 16px;
+            }
+        }
+
+        /* HP SANGAT KECIL */
+
+        @media (max-width: 360px) {
+            .sidebar {
+                width: 88vw;
             }
 
             .main {
-                padding: 6px;
+                padding: 7px;
             }
 
             .topbar {
                 padding: 7px;
-                gap: 4px;
+                gap: 5px;
+            }
+
+            .mobile-menu-btn {
+                width: 38px;
+                height: 38px;
+                min-width: 38px;
             }
 
             .breadcrumb-current {
-                max-width: 80px;
-                font-size: 10px;
-            }
-
-            .avatar {
-                width: 34px;
-                height: 34px;
-                min-width: 34px;
+                max-width: 100px;
                 font-size: 12px;
             }
 
+            .avatar {
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+            }
+
             .content-card {
-                padding: 10px;
-            }
-
-            .dashboard-left h1 {
-                font-size: 18px;
-            }
-
-            .summary-card {
-                padding: 9px;
-            }
-
-            .summary-icon {
-                width: 34px;
-                height: 34px;
-                min-width: 34px;
-                font-size: 14px;
-            }
-
-            .summary-card h2 {
-                font-size: 16px;
+                padding: 12px;
             }
         }
 
@@ -1255,6 +1086,9 @@
 </head>
 
 <body>
+
+    <!-- MOBILE SIDEBAR OVERLAY -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- SIDEBAR -->
 
@@ -1384,6 +1218,10 @@
 
         <header class="topbar">
 
+            <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Buka menu">
+                <i class="bi bi-list"></i>
+            </button>
+
             <div class="breadcrumb-bar">
 
                 <div class="breadcrumb-home">
@@ -1441,6 +1279,56 @@
         @yield('content')
 
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuButton = document.getElementById('mobileMenuBtn');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+
+            if (!menuButton || !sidebar || !overlay) return;
+
+            function openSidebar() {
+                sidebar.classList.add('open');
+                overlay.classList.add('show');
+                menuButton.setAttribute('aria-label', 'Tutup menu');
+                menuButton.innerHTML = '<i class="bi bi-x-lg"></i>';
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+                menuButton.setAttribute('aria-label', 'Buka menu');
+                menuButton.innerHTML = '<i class="bi bi-list"></i>';
+                document.body.style.overflow = '';
+            }
+
+            menuButton.addEventListener('click', function () {
+                if (sidebar.classList.contains('open')) {
+                    closeSidebar();
+                } else {
+                    openSidebar();
+                }
+            });
+
+            overlay.addEventListener('click', closeSidebar);
+
+            sidebar.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    if (window.innerWidth <= 768) {
+                        closeSidebar();
+                    }
+                });
+            });
+
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 768) {
+                    closeSidebar();
+                }
+            });
+        });
+    </script>
 
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js">
