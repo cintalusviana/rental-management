@@ -18,6 +18,7 @@
     width:100%;
     max-width:100%;
     overflow:hidden;
+    box-sizing:border-box;
 }
 
 
@@ -57,6 +58,8 @@
     box-shadow:
         0 8px 22px rgba(8,26,49,.08),
         0 16px 35px rgba(8,26,49,.08);
+
+    box-sizing:border-box;
 }
 
 
@@ -108,6 +111,7 @@
 .hero-content{
     position:relative;
     z-index:2;
+    max-width:100%;
 }
 
 .hero-card small{
@@ -129,6 +133,8 @@
     font-weight:700;
 
     letter-spacing:-.4px;
+
+    overflow-wrap:anywhere;
 }
 
 .hero-card p{
@@ -174,6 +180,9 @@
         background .2s ease,
         transform .2s ease,
         box-shadow .2s ease;
+
+    max-width:100%;
+    box-sizing:border-box;
 }
 
 .hero-btn:hover{
@@ -228,6 +237,8 @@
         transform .2s ease,
         box-shadow .2s ease,
         border-color .2s ease;
+
+    box-sizing:border-box;
 }
 
 .stat-card:hover{
@@ -262,6 +273,8 @@
     letter-spacing:.3px;
 
     white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .stat-value{
@@ -361,10 +374,13 @@
     gap:12px;
 
     border-bottom:1px solid #eef1f5;
+
+    box-sizing:border-box;
 }
 
 .content-header-left{
     min-width:0;
+    flex:1;
 }
 
 .content-header h5{
@@ -374,6 +390,8 @@
 
     font-size:15px;
     font-weight:700;
+
+    overflow-wrap:anywhere;
 }
 
 .content-header small{
@@ -431,6 +449,8 @@
 
     transition:
         background .2s ease;
+
+    box-sizing:border-box;
 }
 
 .rental-item:last-child{
@@ -477,6 +497,10 @@
 
     font-size:11px;
     line-height:1.4;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 
@@ -488,6 +512,8 @@
     flex-shrink:0;
 
     text-align:right;
+
+    min-width:0;
 }
 
 .rental-right strong{
@@ -534,6 +560,8 @@
     line-height:1;
 
     white-space:nowrap;
+
+    box-sizing:border-box;
 }
 
 .pending{
@@ -613,9 +641,6 @@
         font-size:13px;
     }
 
-
-    /* STAT */
-
     .dashboard-stats{
         --bs-gutter-x:.8rem;
         --bs-gutter-y:.8rem;
@@ -637,16 +662,10 @@
     .icon-circle{
         width:43px;
         height:43px;
-
         flex-basis:43px;
-
         border-radius:11px;
-
         font-size:17px;
     }
-
-
-    /* CONTENT */
 
     .content-header{
         padding:15px 16px;
@@ -666,26 +685,22 @@
 
     .dashboard-page{
         width:100%;
+        max-width:100%;
+        overflow:hidden;
     }
 
-
-    /* =====================================================
-       HERO
-    ===================================================== */
+    /* HERO */
 
     .hero-card{
         min-height:auto;
-
-        padding:25px 21px;
-
+        padding:23px 19px;
         margin-bottom:18px;
-
         border-radius:17px;
     }
 
     .hero-card h2{
-        font-size:24px;
-
+        font-size:23px;
+        line-height:1.25;
         letter-spacing:-.3px;
     }
 
@@ -694,105 +709,84 @@
     }
 
     .hero-card p{
-        margin-bottom:17px;
-
-        font-size:13px;
+        margin-bottom:16px;
+        font-size:12.5px;
         line-height:1.55;
     }
 
     .hero-btn{
         padding:10px 15px;
-
         border-radius:10px;
-
-        font-size:12px;
+        font-size:11.5px;
     }
 
 
-    /* =====================================================
-       STATISTICS
-       3 CARD TETAP SEJAJAR
-    ===================================================== */
+    /* STATISTICS */
 
     .dashboard-stats{
         margin-bottom:18px;
 
-        --bs-gutter-x:.7rem;
-        --bs-gutter-y:.7rem;
+        --bs-gutter-x:.65rem;
+        --bs-gutter-y:.65rem;
+
+        width:100%;
+        margin-left:0;
+        margin-right:0;
     }
 
     .dashboard-stats > .col-md-4{
         width:33.333333%;
+        padding-left:calc(var(--bs-gutter-x) * .5);
+        padding-right:calc(var(--bs-gutter-x) * .5);
     }
 
 
-    /* =====================================================
-       STAT CARD HP
-       DIBUAT LEBIH BESAR
-    ===================================================== */
+    /* STAT CARD */
 
     .stat-card{
+        min-height:135px;
+        padding:13px 6px;
 
-        min-height:145px;
-
-        padding:15px 7px;
-
-        border-radius:15px;
+        border-radius:14px;
 
         display:flex;
-
         align-items:center;
-
         justify-content:center;
 
         text-align:center;
     }
 
 
-    /* =====================================================
-       ISI STAT CARD
-    ===================================================== */
-
     .stat-card > .d-flex{
-
         width:100%;
 
         display:flex !important;
-
         flex-direction:column;
 
         align-items:center !important;
-
         justify-content:center !important;
 
-        gap:9px !important;
+        gap:8px !important;
     }
 
 
-    /* =====================================================
-       STAT CONTENT
-    ===================================================== */
+    /* STAT CONTENT */
 
     .stat-content{
-
         width:100%;
-
         order:2;
 
         display:flex;
-
         flex-direction:column;
-
         align-items:center;
+
+        min-width:0;
     }
 
 
-    /* =====================================================
-       TITLE
-    ===================================================== */
+    /* TITLE */
 
     .stat-title{
-
         order:1;
 
         width:100%;
@@ -801,61 +795,58 @@
 
         color:#64748b;
 
-        font-size:10px;
+        font-size:9.5px;
 
         line-height:1.3;
-
-        letter-spacing:.1px;
+        letter-spacing:.05px;
 
         white-space:normal;
+        overflow:visible;
+        text-overflow:clip;
+
+        overflow-wrap:anywhere;
     }
 
 
-    /* =====================================================
-       VALUE
-    ===================================================== */
+    /* VALUE */
 
     .stat-value{
-
         order:2;
 
+        width:100%;
         max-width:100%;
 
-        font-size:23px;
-
+        font-size:22px;
         line-height:1.15;
 
         letter-spacing:-.3px;
+
+        overflow:hidden;
+        text-overflow:ellipsis;
     }
 
 
-    /* =====================================================
-       ICON
-    ===================================================== */
+    /* ICON */
 
     .icon-circle{
-
         order:1;
 
-        width:48px;
-        height:48px;
+        width:45px;
+        height:45px;
 
-        flex:0 0 48px;
+        flex:0 0 45px;
 
-        border-radius:13px;
+        border-radius:12px;
 
-        font-size:19px;
+        font-size:18px;
     }
 
 
-    /* =====================================================
-       CONTENT
-    ===================================================== */
+    /* CONTENT */
 
     .content-row{
-
-        --bs-gutter-x:.9rem;
-        --bs-gutter-y:.9rem;
+        --bs-gutter-x:.85rem;
+        --bs-gutter-y:.85rem;
     }
 
     .content-box{
@@ -863,17 +854,12 @@
     }
 
 
-    /* =====================================================
-       CONTENT HEADER
-    ===================================================== */
+    /* HEADER */
 
     .content-header{
-
-        min-height:62px;
-
-        padding:15px;
-
-        gap:9px;
+        min-height:60px;
+        padding:14px;
+        gap:8px;
     }
 
     .content-header h5{
@@ -885,198 +871,23 @@
     }
 
     .content-header a{
-        font-size:11px;
+        font-size:10.5px;
     }
 
 
-    /* =====================================================
-       RENTAL
-    ===================================================== */
+    /* RENTAL */
 
     .rental-item{
-
-        padding:15px;
-
-        gap:10px;
-    }
-
-    .rental-info strong{
-        font-size:12px;
-    }
-
-    .rental-info small{
-        font-size:10px;
-    }
-
-    .badge-status{
-
-        min-height:27px;
-
-        padding:5px 9px;
-
-        font-size:9px;
-    }
-
-    .rental-right strong{
-        font-size:11px;
-    }
-
-    .rental-right small{
-        font-size:9px;
-    }
-}
-
-
-/* =========================================================
-   SMALL PHONE
-   576px
-========================================================= */
-
-@media(max-width:576px){
-
-    /* =====================================================
-       HERO
-    ===================================================== */
-
-    .hero-card{
-
-        padding:23px 18px;
-
-        border-radius:16px;
-    }
-
-    .hero-card h2{
-        font-size:22px;
-    }
-
-    .hero-card small{
-        font-size:11px;
-    }
-
-    .hero-card p{
-        font-size:12px;
-    }
-
-    .hero-btn{
-        padding:10px 14px;
-
-        font-size:11px;
-    }
-
-
-    /* =====================================================
-       STATISTICS
-       TETAP 3 CARD
-    ===================================================== */
-
-    .dashboard-stats{
-
-        --bs-gutter-x:.55rem;
-        --bs-gutter-y:.55rem;
-    }
-
-    .dashboard-stats > .col-md-4{
-
-        width:33.333333%;
-    }
-
-
-    /* =====================================================
-       STAT CARD
-       LEBIH BESAR
-    ===================================================== */
-
-    .stat-card{
-
-        min-height:138px;
-
-        padding:13px 6px;
-
-        border-radius:14px;
-    }
-
-    .stat-card > .d-flex{
-
-        gap:8px !important;
-    }
-
-
-    /* =====================================================
-       ICON
-    ===================================================== */
-
-    .icon-circle{
-
-        width:44px;
-        height:44px;
-
-        flex-basis:44px;
-
-        border-radius:12px;
-
-        font-size:18px;
-    }
-
-
-    /* =====================================================
-       TITLE
-    ===================================================== */
-
-    .stat-title{
-
-        font-size:9px;
-
-        line-height:1.25;
-    }
-
-
-    /* =====================================================
-       VALUE
-    ===================================================== */
-
-    .stat-value{
-
-        font-size:21px;
-    }
-
-
-    /* =====================================================
-       CONTENT
-    ===================================================== */
-
-    .content-header{
-
-        min-height:59px;
-
         padding:14px;
-    }
-
-    .content-header h5{
-        font-size:13px;
-    }
-
-    .content-header small{
-        font-size:9.5px;
-    }
-
-    .content-header a{
-        font-size:10px;
-    }
-
-
-    /* =====================================================
-       RENTAL
-    ===================================================== */
-
-    .rental-item{
-
-        padding:14px;
-
         gap:9px;
     }
 
+    .rental-info{
+        min-width:0;
+    }
+
     .rental-info strong{
-        font-size:11px;
+        font-size:11.5px;
     }
 
     .rental-info small{
@@ -1084,11 +895,8 @@
     }
 
     .badge-status{
-
         min-height:26px;
-
         padding:5px 8px;
-
         font-size:8.5px;
     }
 
@@ -1103,20 +911,13 @@
 
 
 /* =========================================================
-   VERY SMALL PHONE
-   400px
+   SMALL PHONE
 ========================================================= */
 
-@media(max-width:400px){
-
-    /* =====================================================
-       HERO
-    ===================================================== */
+@media(max-width:576px){
 
     .hero-card{
-
         padding:21px 16px;
-
         border-radius:15px;
     }
 
@@ -1129,101 +930,70 @@
     }
 
     .hero-card p{
-
         font-size:11.5px;
-
-        line-height:1.5;
     }
 
     .hero-btn{
-
         padding:9px 13px;
-
-        font-size:11px;
+        font-size:10.5px;
     }
 
 
-    /* =====================================================
-       STATISTICS
-    ===================================================== */
+    /* STATISTICS */
 
     .dashboard-stats{
-
         --bs-gutter-x:.5rem;
         --bs-gutter-y:.5rem;
     }
 
     .dashboard-stats > .col-md-4{
-
         width:33.333333%;
     }
 
 
-    /* =====================================================
-       STAT CARD
-    ===================================================== */
+    /* STAT CARD */
 
     .stat-card{
-
-        min-height:132px;
-
-        padding:12px 5px;
-
+        min-height:128px;
+        padding:11px 5px;
         border-radius:13px;
     }
 
-
     .stat-card > .d-flex{
-
         gap:7px !important;
     }
 
 
-    /* =====================================================
-       ICON
-    ===================================================== */
+    /* ICON */
 
     .icon-circle{
-
         width:42px;
         height:42px;
-
         flex-basis:42px;
-
         border-radius:11px;
-
         font-size:17px;
     }
 
 
-    /* =====================================================
-       TITLE
-    ===================================================== */
+    /* TITLE */
 
     .stat-title{
-
         font-size:8.5px;
-
         line-height:1.25;
     }
 
 
-    /* =====================================================
-       VALUE
-    ===================================================== */
+    /* VALUE */
 
     .stat-value{
-
         font-size:20px;
     }
 
 
-    /* =====================================================
-       CONTENT
-    ===================================================== */
+    /* CONTENT */
 
     .content-header{
-
+        min-height:57px;
         padding:13px;
     }
 
@@ -1240,15 +1010,15 @@
     }
 
 
+    /* RENTAL */
+
     .rental-item{
-
         padding:13px;
-
         gap:8px;
     }
 
     .rental-info strong{
-        font-size:10.5px;
+        font-size:11px;
     }
 
     .rental-info small{
@@ -1256,11 +1026,8 @@
     }
 
     .badge-status{
-
         min-height:25px;
-
-        padding:5px 7px;
-
+        padding:4px 7px;
         font-size:8px;
     }
 
@@ -1275,286 +1042,307 @@
 
 
 /* =========================================================
-   EXTRA SMALL PHONE
-   360px
+   VERY SMALL PHONE
 ========================================================= */
 
-@media(max-width:360px){
+@media(max-width:400px){
 
     .hero-card{
-
         padding:20px 14px;
+        border-radius:14px;
     }
 
     .hero-card h2{
-
         font-size:20px;
     }
 
-    .hero-card p{
+    .hero-card small{
+        font-size:10.5px;
+    }
 
+    .hero-card p{
         font-size:11px;
+        line-height:1.5;
+    }
+
+    .hero-btn{
+        padding:9px 12px;
+        font-size:10px;
     }
 
 
-    /* =====================================================
-       STAT
-    ===================================================== */
+    /* STATISTICS */
 
     .dashboard-stats{
-
         --bs-gutter-x:.4rem;
         --bs-gutter-y:.4rem;
     }
 
+    .dashboard-stats > .col-md-4{
+        width:33.333333%;
+    }
+
+
+    /* STAT CARD */
+
     .stat-card{
-
-        min-height:128px;
-
-        padding:11px 4px;
-
+        min-height:122px;
+        padding:10px 4px;
         border-radius:12px;
     }
 
-
     .stat-card > .d-flex{
-
-        gap:7px !important;
+        gap:6px !important;
     }
 
 
+    /* ICON */
+
     .icon-circle{
-
-        width:40px;
-        height:40px;
-
-        flex-basis:40px;
-
+        width:39px;
+        height:39px;
+        flex-basis:39px;
         border-radius:10px;
-
         font-size:16px;
     }
 
 
+    /* TITLE */
+
     .stat-title{
-
         font-size:8px;
-
         line-height:1.2;
     }
 
 
-    .stat-value{
+    /* VALUE */
 
-        font-size:19px;
+    .stat-value{
+        font-size:18px;
     }
 
 
-    /* =====================================================
-       CONTENT
-    ===================================================== */
+    /* CONTENT */
 
     .content-header{
-
         padding:12px;
     }
 
     .content-header h5{
-
-        font-size:12.5px;
+        font-size:12px;
     }
 
     .content-header small{
-
         font-size:8.5px;
     }
 
     .content-header a{
-
         font-size:9px;
     }
 
 
     .rental-item{
-
         padding:12px;
-
         gap:7px;
     }
 
     .rental-info strong{
-
         font-size:10px;
     }
 
     .rental-info small{
-
         font-size:8.5px;
     }
 
     .badge-status{
-
         min-height:24px;
-
         padding:4px 6px;
-
         font-size:7.5px;
     }
 
     .rental-right strong{
-
         font-size:9.5px;
     }
 
     .rental-right small{
+        font-size:7.5px;
+    }
+}
 
+
+/* =========================================================
+   EXTRA SMALL PHONE
+========================================================= */
+
+@media(max-width:360px){
+
+    .hero-card{
+        padding:18px 12px;
+    }
+
+    .hero-card h2{
+        font-size:19px;
+    }
+
+    .hero-card p{
+        font-size:10.5px;
+    }
+
+    .hero-btn{
+        padding:8px 11px;
+        font-size:9.5px;
+    }
+
+
+    /* STAT */
+
+    .dashboard-stats{
+        --bs-gutter-x:.3rem;
+        --bs-gutter-y:.3rem;
+    }
+
+    .stat-card{
+        min-height:116px;
+        padding:9px 3px;
+        border-radius:11px;
+    }
+
+    .stat-card > .d-flex{
+        gap:5px !important;
+    }
+
+
+    .icon-circle{
+        width:37px;
+        height:37px;
+        flex-basis:37px;
+        border-radius:9px;
+        font-size:15px;
+    }
+
+    .stat-title{
+        font-size:7.5px;
+    }
+
+    .stat-value{
+        font-size:17px;
+    }
+
+
+    /* CONTENT */
+
+    .content-header{
+        padding:11px;
+    }
+
+    .content-header h5{
+        font-size:12px;
+    }
+
+    .content-header small{
         font-size:8px;
+    }
+
+    .content-header a{
+        font-size:8.5px;
+    }
+
+    .rental-item{
+        padding:11px;
+        gap:6px;
+    }
+
+    .rental-info strong{
+        font-size:9.5px;
+    }
+
+    .rental-info small{
+        font-size:8px;
+    }
+
+    .badge-status{
+        min-height:23px;
+        padding:4px 5px;
+        font-size:7px;
+    }
+
+    .rental-right strong{
+        font-size:9px;
+    }
+
+    .rental-right small{
+        font-size:7.5px;
     }
 }
 
 </style>
 
-
 <div class="dashboard-page">
 
+```
+<!-- =====================================================
+     HERO
+====================================================== -->
 
-    <!-- =====================================================
-         HERO
-    ====================================================== -->
+<div class="hero-card">
 
-    <div class="hero-card">
+    <div class="hero-content">
 
-        <div class="hero-content">
+        <small>
+            Selamat datang kembali,
+        </small>
 
-            <small>
-                Selamat datang kembali,
-            </small>
+        <h2>
+            {{ $customer->name }} 👋
+        </h2>
 
-            <h2>
-                {{ $customer->name }} 👋
-            </h2>
+        <p>
+            Temukan barang rental terbaik untuk kebutuhan Anda.
+        </p>
 
-            <p>
-                Temukan barang rental terbaik untuk kebutuhan Anda.
-            </p>
-
-            <a
-                href="{{ route('pelanggan.products') }}"
-                class="hero-btn"
-            >
-                Jelajahi Barang
-                <i class="bi bi-arrow-right"></i>
-            </a>
-
-        </div>
+        <a
+            href="{{ route('pelanggan.products') }}"
+            class="hero-btn"
+        >
+            Jelajahi Barang
+            <i class="bi bi-arrow-right"></i>
+        </a>
 
     </div>
 
-
-    <!-- =====================================================
-         STATISTICS
-    ====================================================== -->
-
-    <div class="row dashboard-stats">
+</div>
 
 
-        <!-- =================================================
-             PENYEWAAN AKTIF
-        ================================================== -->
+<!-- =====================================================
+     STATISTICS
+====================================================== -->
 
-        <div class="col-md-4">
+<div class="row dashboard-stats">
 
-            <div class="stat-card">
 
-                <div class="d-flex align-items-center justify-content-between gap-2">
+    <!-- PENYEWAAN AKTIF -->
 
-                    <div class="stat-content">
+    <div class="col-md-4">
 
-                        <div class="stat-title">
-                            Penyewaan Aktif
-                        </div>
+        <div class="stat-card">
 
-                        <div class="stat-value">
-                            {{ $activeRentals }}
-                        </div>
+            <div class="d-flex align-items-center justify-content-between gap-2">
 
+                <div class="stat-content">
+
+                    <div class="stat-title">
+                        Penyewaan Aktif
                     </div>
 
-                    <div class="icon-circle icon-blue">
-
-                        <i class="bi bi-box-seam"></i>
-
+                    <div class="stat-value">
+                        {{ $activeRentals }}
                     </div>
 
                 </div>
 
-            </div>
+                <div class="icon-circle icon-blue">
 
-        </div>
-
-
-        <!-- =================================================
-             TOTAL PEMBAYARAN
-        ================================================== -->
-
-        <div class="col-md-4">
-
-            <div class="stat-card">
-
-                <div class="d-flex align-items-center justify-content-between gap-2">
-
-                    <div class="stat-content">
-
-                        <div class="stat-title">
-                            Total Pembayaran
-                        </div>
-
-                        <div class="stat-value">
-                            Rp {{ number_format($totalPayment,0,',','.') }}
-                        </div>
-
-                    </div>
-
-                    <div class="icon-circle icon-orange">
-
-                        <i class="bi bi-credit-card"></i>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
-             TOTAL PENYEWAAN
-        ================================================== -->
-
-        <div class="col-md-4">
-
-            <div class="stat-card">
-
-                <div class="d-flex align-items-center justify-content-between gap-2">
-
-                    <div class="stat-content">
-
-                        <div class="stat-title">
-                            Total Penyewaan
-                        </div>
-
-                        <div class="stat-value">
-                            {{ $totalRentals }}
-                        </div>
-
-                    </div>
-
-                    <div class="icon-circle icon-purple">
-
-                        <i class="bi bi-clock-history"></i>
-
-                    </div>
+                    <i class="bi bi-box-seam"></i>
 
                 </div>
 
@@ -1565,255 +1353,320 @@
     </div>
 
 
-    <!-- =====================================================
-         CONTENT
-    ====================================================== -->
+    <!-- TOTAL PEMBAYARAN -->
 
-    <div class="row content-row">
+    <div class="col-md-4">
 
+        <div class="stat-card">
 
-        <!-- =================================================
-             PENYEWAAN TERBARU
-        ================================================== -->
+            <div class="d-flex align-items-center justify-content-between gap-2">
 
-        <div class="col-lg-7">
+                <div class="stat-content">
 
-            <div class="content-box">
-
-                <div class="content-header">
-
-                    <div class="content-header-left">
-
-                        <h5>
-                            Penyewaan Terbaru
-                        </h5>
-
+                    <div class="stat-title">
+                        Total Pembayaran
                     </div>
 
-                    <a href="{{ route('pelanggan.rentals') }}">
-
-                        Lihat Semua
-
-                        <i class="bi bi-arrow-right ms-1"></i>
-
-                    </a>
+                    <div class="stat-value">
+                        Rp {{ number_format($totalPayment,0,',','.') }}
+                    </div>
 
                 </div>
 
+                <div class="icon-circle icon-orange">
 
-                @forelse($rentals as $rental)
+                    <i class="bi bi-credit-card"></i>
 
-                    @php
-
-                        $class = match($rental->status){
-
-                            'pending' => 'pending',
-
-                            'approved' => 'approved',
-
-                            'completed' => 'completed',
-
-                            'cancelled' => 'cancelled',
-
-                            default => 'approved'
-
-                        };
-
-                    @endphp
-
-
-                    <div class="rental-item">
-
-
-                        <!-- INFO RENTAL -->
-
-                        <div class="rental-info">
-
-                            <strong>
-                                {{ $rental->rental_code }}
-                            </strong>
-
-                            <small>
-
-                                {{ $rental->rental_date }}
-
-                                -
-
-                                {{ $rental->return_date }}
-
-                            </small>
-
-                        </div>
-
-
-                        <!-- STATUS -->
-
-                        <span class="badge-status {{ $class }}">
-
-                            @if($rental->status === 'pending')
-
-                                Menunggu
-
-                            @elseif($rental->status === 'approved')
-
-                                Disetujui
-
-                            @elseif($rental->status === 'completed')
-
-                                Selesai
-
-                            @elseif($rental->status === 'cancelled')
-
-                                Dibatalkan
-
-                            @else
-
-                                {{ $rental->status }}
-
-                            @endif
-
-                        </span>
-
-
-                    </div>
-
-
-                @empty
-
-                    <div class="empty-state">
-
-                        <i class="bi bi-inbox"></i>
-
-                        <h4>
-                            Belum ada penyewaan
-                        </h4>
-
-                        <p>
-                            Data penyewaan Anda akan muncul di sini.
-                        </p>
-
-                    </div>
-
-                @endforelse
+                </div>
 
             </div>
 
         </div>
 
+    </div>
 
-        <!-- =================================================
-             REKOMENDASI BARANG
-        ================================================== -->
 
-        <div class="col-lg-5">
+    <!-- TOTAL PENYEWAAN -->
 
-            <div class="content-box">
+    <div class="col-md-4">
 
-                <div class="content-header">
+        <div class="stat-card">
 
-                    <div class="content-header-left">
+            <div class="d-flex align-items-center justify-content-between gap-2">
 
-                        <h5>
-                            Rekomendasi Barang
-                        </h5>
+                <div class="stat-content">
+
+                    <div class="stat-title">
+                        Total Penyewaan
+                    </div>
+
+                    <div class="stat-value">
+                        {{ $totalRentals }}
+                    </div>
+
+                </div>
+
+                <div class="icon-circle icon-purple">
+
+                    <i class="bi bi-clock-history"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CONTENT
+====================================================== -->
+
+<div class="row content-row">
+
+
+    <!-- PENYEWAAN TERBARU -->
+
+    <div class="col-lg-7">
+
+        <div class="content-box">
+
+            <div class="content-header">
+
+                <div class="content-header-left">
+
+                    <h5>
+                        Penyewaan Terbaru
+                    </h5>
+
+                </div>
+
+                <a href="{{ route('pelanggan.rentals') }}">
+
+                    Lihat Semua
+
+                    <i class="bi bi-arrow-right ms-1"></i>
+
+                </a>
+
+            </div>
+
+
+            @forelse($rentals as $rental)
+
+                @php
+
+                    $class = match($rental->status){
+
+                        'pending' => 'pending',
+
+                        'approved' => 'approved',
+
+                        'completed' => 'completed',
+
+                        'cancelled' => 'cancelled',
+
+                        default => 'approved'
+
+                    };
+
+                @endphp
+
+
+                <div class="rental-item">
+
+
+                    <!-- INFO RENTAL -->
+
+                    <div class="rental-info">
+
+                        <strong>
+                            {{ $rental->rental_code }}
+                        </strong>
 
                         <small>
-                            Barang terbaru
+
+                            {{ $rental->rental_date }}
+
+                            -
+
+                            {{ $rental->return_date }}
+
                         </small>
 
                     </div>
 
+
+                    <!-- STATUS -->
+
+                    <span class="badge-status {{ $class }}">
+
+                        @if($rental->status === 'pending')
+
+                            Menunggu
+
+                        @elseif($rental->status === 'approved')
+
+                            Disetujui
+
+                        @elseif($rental->status === 'completed')
+
+                            Selesai
+
+                        @elseif($rental->status === 'cancelled')
+
+                            Dibatalkan
+
+                        @else
+
+                            {{ $rental->status }}
+
+                        @endif
+
+                    </span>
+
+
                 </div>
 
 
-                @forelse($products as $product)
+            @empty
 
-                    <div class="rental-item">
+                <div class="empty-state">
 
+                    <i class="bi bi-inbox"></i>
 
-                        <!-- PRODUCT -->
+                    <h4>
+                        Belum ada penyewaan
+                    </h4>
 
-                        <div class="rental-info">
+                    <p>
+                        Data penyewaan Anda akan muncul di sini.
+                    </p>
 
-                            <strong>
-                                {{ $product->name }}
-                            </strong>
+                </div>
 
-                            <small>
-                                {{ $product->category->name ?? '-' }}
-                            </small>
-
-                        </div>
-
-
-                        <!-- PRICE -->
-
-                        <div class="rental-right">
-
-                            <strong>
-
-                                Rp {{ number_format(
-                                    $product->price_per_day,
-                                    0,
-                                    ',',
-                                    '.'
-                                ) }}
-
-                            </strong>
-
-
-                            @if($product->status === 'available')
-
-                                <small class="text-success">
-
-                                    <i class="bi bi-check-circle me-1"></i>
-
-                                    Tersedia
-
-                                </small>
-
-                            @else
-
-                                <small class="text-danger">
-
-                                    <i class="bi bi-x-circle me-1"></i>
-
-                                    Tidak Tersedia
-
-                                </small>
-
-                            @endif
-
-                        </div>
-
-
-                    </div>
-
-
-                @empty
-
-                    <div class="empty-state">
-
-                        <i class="bi bi-box"></i>
-
-                        <h4>
-                            Belum ada barang
-                        </h4>
-
-                        <p>
-                            Barang terbaru akan muncul di sini.
-                        </p>
-
-                    </div>
-
-                @endforelse
-
-            </div>
+            @endforelse
 
         </div>
 
+    </div>
+
+
+    <!-- REKOMENDASI BARANG -->
+
+    <div class="col-lg-5">
+
+        <div class="content-box">
+
+            <div class="content-header">
+
+                <div class="content-header-left">
+
+                    <h5>
+                        Rekomendasi Barang
+                    </h5>
+
+                    <small>
+                        Barang terbaru
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            @forelse($products as $product)
+
+                <div class="rental-item">
+
+
+                    <!-- PRODUCT -->
+
+                    <div class="rental-info">
+
+                        <strong>
+                            {{ $product->name }}
+                        </strong>
+
+                        <small>
+                            {{ $product->category->name ?? '-' }}
+                        </small>
+
+                    </div>
+
+
+                    <!-- PRICE -->
+
+                    <div class="rental-right">
+
+                        <strong>
+
+                            Rp {{ number_format(
+                                $product->price_per_day,
+                                0,
+                                ',',
+                                '.'
+                            ) }}
+
+                        </strong>
+
+
+                        @if($product->status === 'available')
+
+                            <small class="text-success">
+
+                                <i class="bi bi-check-circle me-1"></i>
+
+                                Tersedia
+
+                            </small>
+
+                        @else
+
+                            <small class="text-danger">
+
+                                <i class="bi bi-x-circle me-1"></i>
+
+                                Tidak Tersedia
+
+                            </small>
+
+                        @endif
+
+                    </div>
+
+
+                </div>
+
+
+            @empty
+
+                <div class="empty-state">
+
+                    <i class="bi bi-box"></i>
+
+                    <h4>
+                        Belum ada barang
+                    </h4>
+
+                    <p>
+                        Barang terbaru akan muncul di sini.
+                    </p>
+
+                </div>
+
+            @endforelse
+
+        </div>
 
     </div>
+
+
+</div>
+```
 
 </div>
 
